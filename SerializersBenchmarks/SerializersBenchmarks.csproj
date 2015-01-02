@@ -39,6 +39,8 @@
     <Compile Include="DataFiller.cs" />
     <Compile Include="Objects\ByteArray64K.cs" />
     <Compile Include="Objects\IntArray64K.cs" />
+    <Compile Include="Objects\ShortArray64K.cs" />
+    <Compile Include="Objects\LongArray64K.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

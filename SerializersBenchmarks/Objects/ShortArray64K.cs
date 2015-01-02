@@ -22,17 +22,17 @@ namespace SerializersBenchmarks.Objects
 	#if __NEED_SERIALIZABLE_ATTR_
 	[Serializable]
 	#endif
-	public class ByteArray64K
+	public class ShortArray64K
 	{
 		#if __PROTO_
 		[ProtoMember(1)]
 		#endif
 		#if __BINARY_SERIALIZER_
-		[FieldLength(65536)]
+		[FieldLength(65536*sizeof(short))]
 		#endif
-		public byte[] Arr { get; set; }
+		public short[] Arr { get; set; }
 
-		public static bool Compare(ByteArray64K arr1, ByteArray64K arr2)
+		public static bool Compare(LongArray64K arr1, LongArray64K arr2)
 		{
 			if (arr1 == null || arr1.Arr == null)
 				throw new ArgumentNullException ("arr1");
@@ -50,6 +50,7 @@ namespace SerializersBenchmarks.Objects
 
 			return true;
 		}
+
 	}
 }
 

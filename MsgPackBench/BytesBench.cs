@@ -39,7 +39,6 @@ namespace MsgPackBench
 		[Bench]
 		public void DeserializeBytesStream()
 		{
-
 			var ser = SerializationContext.Default.GetSerializer<ByteArray64K> ();
 			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 			byte[] data;
@@ -58,6 +57,15 @@ namespace MsgPackBench
 			}
 
 			b.Stop ();
+
+			//Verify
+			ByteArray64K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ser.Unpack(ms);
+			}
+
+			ByteArray64K.Compare (arr, des1);
 		}
 
 
@@ -98,6 +106,39 @@ namespace MsgPackBench
 
 			b.Stop ();
 		}
+
+		[Bench]
+		public void DeserializeIntsStream()
+		{
+			var ser = SerializationContext.Default.GetSerializer<IntArray64K> ();
+			var arr = new IntArray64K(){Arr = DataFiller.FillIntArray (65536)};
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Pack (ms, arr);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < nIter/10; i++) {
+				using (MemoryStream ms = new MemoryStream (data)) {
+					IntArray64K des=ser.Unpack(ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verify
+			IntArray64K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ser.Unpack(ms);
+			}
+
+			IntArray64K.Compare (arr, des1);
+		}
+
 
 	}
 }

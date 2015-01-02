@@ -79,6 +79,16 @@ namespace BinarySerializerBench
 			}
 
 			b.Stop ();
+
+			//Verification
+			ByteArray64K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ser.Deserialize<ByteArray64K>(ms);
+			}
+
+			ByteArray64K.Compare (arr, des1);
+
 		}
 
 		[Bench]
@@ -101,6 +111,42 @@ namespace BinarySerializerBench
 
 			b.Stop ();
 		}
+
+		[Bench]
+		public void DeserializeIntsStream()
+		{
+
+			BinarySerializer ser = new BinarySerializer ();
+			var arr = new IntArray64K(){Arr = DataFiller.FillIntArray (65536)};
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize (ms, arr);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < nIter/10; i++) {
+				using (MemoryStream ms = new MemoryStream (data)) {
+					IntArray64K des=ser.Deserialize<IntArray64K>(ms);
+
+				}
+				Console.WriteLine ("{0}", i);
+			}
+
+			b.Stop ();
+
+			//Verification
+			IntArray64K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ser.Deserialize<IntArray64K>(ms);
+			}
+
+			IntArray64K.Compare (arr, des1);
+		}
+
 
 	}
 }

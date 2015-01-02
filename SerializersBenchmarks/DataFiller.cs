@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace SerializersBenchmarks
 {
@@ -13,6 +14,17 @@ namespace SerializersBenchmarks
 			return arr;
 		}
 
+		public static short[] FillShortArray(int arraySize)
+		{
+			Random rnd = new Random (100);
+			short[] arr = new short[arraySize]; 
+
+			for(int i=0;i<arraySize;i++)
+				arr[i] = (short)(rnd.Next()%65536);
+
+			return arr;
+		}
+
 		public static int[] FillIntArray(int arraySize)
 		{
 			Random rnd = new Random (100);
@@ -23,6 +35,18 @@ namespace SerializersBenchmarks
 
 			return arr;
 		}
+
+		public static long[] FillLongArray(int arraySize)
+		{
+			Random rnd = new Random (100);
+			long[] arr = new long[arraySize]; 
+
+			for(int i=0;i<arraySize;i++)
+				arr[i] = (long)rnd.Next() + ((long)rnd.Next())<<32;
+
+			return arr;
+		}
+
 	}
 }
 

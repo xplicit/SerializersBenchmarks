@@ -56,6 +56,16 @@ namespace ProtoBench
 			}
 
 			b.Stop ();
+
+			//Verification
+			ByteArray64K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ProtoBuf.Serializer.Deserialize<ByteArray64K> (ms);
+			}
+
+			ByteArray64K.Compare (arr, des1);
+
 		}
 
 		[Bench]
@@ -115,6 +125,39 @@ namespace ProtoBench
 			}
 
 			b.Stop ();
+		}
+
+		[Bench]
+		public void DeserializeIntsStream()
+		{
+
+			var arr = new IntArray64K(){Arr = DataFiller.FillIntArray (65536)};
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ProtoBuf.Serializer.Serialize<IntArray64K> (ms, arr);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < nIter/10; i++) {
+				using (MemoryStream ms = new MemoryStream (data)) {
+					IntArray64K des=ProtoBuf.Serializer.Deserialize<IntArray64K> (ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verification
+			IntArray64K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ProtoBuf.Serializer.Deserialize<IntArray64K> (ms);
+			}
+
+			IntArray64K.Compare (arr, des1);
+
 		}
 
 	}

@@ -63,16 +63,7 @@ namespace NetSerializerBench
 				des1=(ByteArray64K)NetSerializer.Serializer.Deserialize(ms);
 			}
 
-			if (arr.Arr.Length != des1.Arr.Length)
-				throw new ArgumentException("Arrays length not equal");
-
-			for(int i=0;i<arr.Arr.Length;i++)
-			{
-				if (arr.Arr[i] != des1.Arr[i]) 
-				{
-					throw new ArgumentException("Arrays data not equal");
-				}
-			}
+			ByteArray64K.Compare (arr, des1);
 		}
 
 
@@ -94,6 +85,39 @@ namespace NetSerializerBench
 
 			b.Stop ();
 		}
+
+		[Bench]
+		public void DeserializeIntsStream()
+		{
+
+			var arr = new IntArray64K(){Arr = DataFiller.FillIntArray (65536)};
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < nIter/10; i++) {
+				using (MemoryStream ms = new MemoryStream (data)) {
+					IntArray64K des=(IntArray64K)NetSerializer.Serializer.Deserialize(ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verification
+			IntArray64K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=(IntArray64K)NetSerializer.Serializer.Deserialize(ms);
+			}
+
+			IntArray64K.Compare (arr, des1);
+		}
+
 
 	}
 }
