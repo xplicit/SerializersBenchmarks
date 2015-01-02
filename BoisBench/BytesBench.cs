@@ -21,7 +21,7 @@ namespace BoisBench
 		{
 
 			var ser = new BoisSerializer ();
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 
 			var b = Benchmark.StartNew ();
 
@@ -41,7 +41,7 @@ namespace BoisBench
 		{
 
 			var ser = new BoisSerializer ();
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 			byte[] data;
 
 			using (MemoryStream ms = new MemoryStream ()) {
@@ -53,17 +53,17 @@ namespace BoisBench
 
 			for (int i = 0; i < nIter; i++) {
 				using (MemoryStream ms = new MemoryStream (data)) {
-					ByteArray1 des=ser.Deserialize<ByteArray1>(ms);
+					ByteArray64K des=ser.Deserialize<ByteArray64K>(ms);
 				}
 			}
 
 			b.Stop ();
 
 			//Verification
-			ByteArray1 des1;
+			ByteArray64K des1;
 
 			using (MemoryStream ms = new MemoryStream (data)) {
-				des1=ser.Deserialize<ByteArray1>(ms);
+				des1=ser.Deserialize<ByteArray64K>(ms);
 			}
 
 			if (arr.Arr.Length != des1.Arr.Length)
@@ -85,7 +85,7 @@ namespace BoisBench
 		{
 
 			var ser = new BoisSerializer ();
-			var arr = new IntArray1(){Arr = DataFiller.FillIntArray (65536)};
+			var arr = new IntArray64K(){Arr = DataFiller.FillIntArray (65536)};
 
 			var b = Benchmark.StartNew ();
 

@@ -41,11 +41,11 @@
     <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BytesBench.cs" />
-    <Compile Include="..\SerializersBenchmarks\Objects\ByteArray1.cs">
-      <Link>Objects\ByteArray1.cs</Link>
+    <Compile Include="..\SerializersBenchmarks\Objects\ByteArray64K.cs">
+      <Link>Objects\ByteArray64K.cs</Link>
     </Compile>
-    <Compile Include="..\SerializersBenchmarks\Objects\IntArray1.cs">
-      <Link>Objects\IntArray1.cs</Link>
+    <Compile Include="..\SerializersBenchmarks\Objects\IntArray64K.cs">
+      <Link>Objects\IntArray64K.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

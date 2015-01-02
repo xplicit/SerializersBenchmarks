@@ -20,7 +20,7 @@ namespace BinarySerializerBench
 		public void SerializeBytesStream()
 		{
 			BinarySerializer ser = new BinarySerializer ();
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 
 			var b = Benchmark.StartNew ();
 
@@ -40,7 +40,7 @@ namespace BinarySerializerBench
 		{
 
 			BinarySerializer ser = new BinarySerializer ();
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 			byte[] data;
 
 			using (MemoryStream ms = new MemoryStream ()) {
@@ -52,7 +52,7 @@ namespace BinarySerializerBench
 
 			for (int i = 0; i < nIter; i++) {
 				using (MemoryStream ms = new MemoryStream (data)) {
-					ByteArray1 des=ser.Deserialize<ByteArray1>(ms);
+					ByteArray64K des=ser.Deserialize<ByteArray64K>(ms);
 				}
 			}
 
@@ -64,7 +64,7 @@ namespace BinarySerializerBench
 		{
 
 			BinarySerializer ser = new BinarySerializer ();
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 			byte[] data;
 
 			using (MemoryStream ms = new MemoryStream ()) {
@@ -75,7 +75,7 @@ namespace BinarySerializerBench
 			var b = Benchmark.StartNew ();
 
 			for (int i = 0; i < nIter; i++) {
-					ByteArray1 des=ser.Deserialize<ByteArray1>(data);
+					ByteArray64K des=ser.Deserialize<ByteArray64K>(data);
 			}
 
 			b.Stop ();
@@ -87,7 +87,7 @@ namespace BinarySerializerBench
 		{
 
 			BinarySerializer ser = new BinarySerializer ();
-			var arr = new IntArray1(){Arr = DataFiller.FillIntArray (65536)};
+			var arr = new IntArray64K(){Arr = DataFiller.FillIntArray (65536)};
 
 			var b = Benchmark.StartNew ();
 

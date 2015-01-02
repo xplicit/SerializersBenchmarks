@@ -20,8 +20,8 @@ namespace MsgPackBench
 		public void SerializeBytesStream()
 		{
 
-			var ser = SerializationContext.Default.GetSerializer<ByteArray1> ();
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var ser = SerializationContext.Default.GetSerializer<ByteArray64K> ();
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 
 			var b = Benchmark.StartNew ();
 
@@ -40,8 +40,8 @@ namespace MsgPackBench
 		public void DeserializeBytesStream()
 		{
 
-			var ser = SerializationContext.Default.GetSerializer<ByteArray1> ();
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var ser = SerializationContext.Default.GetSerializer<ByteArray64K> ();
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 			byte[] data;
 
 			using (MemoryStream ms = new MemoryStream ()) {
@@ -53,7 +53,7 @@ namespace MsgPackBench
 
 			for (int i = 0; i < nIter; i++) {
 				using (MemoryStream ms = new MemoryStream (data)) {
-					ByteArray1 des=ser.Unpack(ms);
+					ByteArray64K des=ser.Unpack(ms);
 				}
 			}
 
@@ -65,8 +65,8 @@ namespace MsgPackBench
 		public void SerializeBytesArray()
 		{
 
-			var ser = SerializationContext.Default.GetSerializer<ByteArray1> ();
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var ser = SerializationContext.Default.GetSerializer<ByteArray64K> ();
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 
 			var b = Benchmark.StartNew ();
 
@@ -83,8 +83,8 @@ namespace MsgPackBench
 		public void SerializeIntsStream()
 		{
 
-			var ser = SerializationContext.Default.GetSerializer<IntArray1> ();
-			var arr = new IntArray1(){Arr = DataFiller.FillIntArray (65536)};
+			var ser = SerializationContext.Default.GetSerializer<IntArray64K> ();
+			var arr = new IntArray64K(){Arr = DataFiller.FillIntArray (65536)};
 
 			var b = Benchmark.StartNew ();
 

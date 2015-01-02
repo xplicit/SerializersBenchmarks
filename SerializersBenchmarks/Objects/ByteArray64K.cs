@@ -19,7 +19,7 @@ namespace SerializersBenchmarks.Objects
 	#if __NEED_SERIALIZABLE_ATTR_
 	[Serializable]
 	#endif
-	public class ByteArray1
+	public class ByteArray64K
 	{
 		#if __PROTO_
 		[ProtoMember(1)]

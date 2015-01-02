@@ -20,14 +20,14 @@ namespace ProtoBench
 		public void SerializeBytesStream()
 		{
 
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 
 			var b = Benchmark.StartNew ();
 
 			for (int i = 0; i < nIter; i++) {
 				byte[] res;
 				using (MemoryStream ms = new MemoryStream ()) {
-					ProtoBuf.Serializer.Serialize<ByteArray1> (ms, arr);
+					ProtoBuf.Serializer.Serialize<ByteArray64K> (ms, arr);
 					res = ms.ToArray ();
 				}
 			}
@@ -39,11 +39,11 @@ namespace ProtoBench
 		public void DeserializeBytesStream()
 		{
 
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 			byte[] data;
 
 			using (MemoryStream ms = new MemoryStream ()) {
-				ProtoBuf.Serializer.Serialize<ByteArray1> (ms, arr);
+				ProtoBuf.Serializer.Serialize<ByteArray64K> (ms, arr);
 				data = ms.ToArray ();
 			}
 
@@ -51,7 +51,7 @@ namespace ProtoBench
 
 			for (int i = 0; i < nIter; i++) {
 				using (MemoryStream ms = new MemoryStream (data)) {
-					ByteArray1 des=ProtoBuf.Serializer.Deserialize<ByteArray1> (ms);
+					ByteArray64K des=ProtoBuf.Serializer.Deserialize<ByteArray64K> (ms);
 				}
 			}
 
@@ -62,14 +62,14 @@ namespace ProtoBench
 		public void SerializeBytesStreamWithCapacity()
 		{
 
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 
 			var b = Benchmark.StartNew ();
 
 			for (int i = 0; i < nIter; i++) {
 				byte[] res;
 				using (MemoryStream ms = new MemoryStream (68000)) {
-					ProtoBuf.Serializer.Serialize<ByteArray1> (ms, arr);
+					ProtoBuf.Serializer.Serialize<ByteArray64K> (ms, arr);
 					res = ms.ToArray ();
 				}
 			}
@@ -81,7 +81,7 @@ namespace ProtoBench
 		public void SerializeBytesReuseStream()
 		{
 
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 
 			var b = Benchmark.StartNew ();
 
@@ -89,7 +89,7 @@ namespace ProtoBench
 				for (int i = 0; i < nIter; i++) {
 					byte[] res;
 					ms.Position = 0;
-					ProtoBuf.Serializer.Serialize<ByteArray1> (ms, arr);
+					ProtoBuf.Serializer.Serialize<ByteArray64K> (ms, arr);
 					res = ms.ToArray ();
 				}
 			}
@@ -102,14 +102,14 @@ namespace ProtoBench
 		public void SerializeIntsStream()
 		{
 
-			var arr = new IntArray1(){Arr = DataFiller.FillIntArray (65536)};
+			var arr = new IntArray64K(){Arr = DataFiller.FillIntArray (65536)};
 
 			var b = Benchmark.StartNew ();
 
 			for (int i = 0; i < nIter/10; i++) {
 				byte[] res;
 				using (MemoryStream ms = new MemoryStream ()) {
-					ProtoBuf.Serializer.Serialize<IntArray1> (ms, arr);
+					ProtoBuf.Serializer.Serialize<IntArray64K> (ms, arr);
 					res = ms.ToArray ();
 				}
 			}

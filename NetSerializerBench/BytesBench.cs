@@ -13,13 +13,13 @@ namespace NetSerializerBench
 
 		public BytesBench ()
 		{
-			NetSerializer.Serializer.Initialize(new Type[]{typeof(ByteArray1),typeof(IntArray1)});
+			NetSerializer.Serializer.Initialize(new Type[]{typeof(ByteArray64K),typeof(IntArray64K)});
 		}
 
 		[Bench]
 		public void SerializeBytesStream()
 		{
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 
 			var b = Benchmark.StartNew ();
 
@@ -38,7 +38,7 @@ namespace NetSerializerBench
 		public void DeserializeBytesStream()
 		{
 
-			var arr = new ByteArray1(){Arr = DataFiller.FillByteArray (65536)};
+			var arr = new ByteArray64K(){Arr = DataFiller.FillByteArray (65536)};
 			byte[] data;
 
 			using (MemoryStream ms = new MemoryStream ()) {
@@ -50,17 +50,17 @@ namespace NetSerializerBench
 
 			for (int i = 0; i < nIter; i++) {
 				using (MemoryStream ms = new MemoryStream (data)) {
-					ByteArray1 des=(ByteArray1)NetSerializer.Serializer.Deserialize(ms);
+					ByteArray64K des=(ByteArray64K)NetSerializer.Serializer.Deserialize(ms);
 				}
 			}
 
 			b.Stop ();
 
 			//Verification
-			ByteArray1 des1;
+			ByteArray64K des1;
 
 			using (MemoryStream ms = new MemoryStream (data)) {
-				des1=(ByteArray1)NetSerializer.Serializer.Deserialize(ms);
+				des1=(ByteArray64K)NetSerializer.Serializer.Deserialize(ms);
 			}
 
 			if (arr.Arr.Length != des1.Arr.Length)
@@ -80,7 +80,7 @@ namespace NetSerializerBench
 		//		[Ignore("Long running")]
 		public void SerializeIntsStream()
 		{
-			var arr = new IntArray1(){Arr = DataFiller.FillIntArray (65536)};
+			var arr = new IntArray64K(){Arr = DataFiller.FillIntArray (65536)};
 
 			var b = Benchmark.StartNew ();
 
