@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializersBenchmarks", "SerializersBenchmarks\SerializersBenchmarks.csproj", "{4B30E239-1F52-45B0-B242-DB512141CC11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsgPackBench", "MsgPackBench\MsgPackBench.csproj", "{5731E8C1-F619-41C9-9DC5-01D51C17359E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoBench", "ProtoBench\ProtoBench.csproj", "{D6C8D8A7-07ED-4BAF-8301-B299D62288F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoisBench", "BoisBench\BoisBench.csproj", "{80DEA09B-8740-4319-BA8C-F96078D9B6BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSerializerBench", "NetSerializerBench\NetSerializerBench.csproj", "{DAFBABE5-5A84-49CA-BA71-7349B728CE99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySerializerBench", "BinarySerializerBench\BinarySerializerBench.csproj", "{248A645B-2376-47E8-9AEC-DE026137E790}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{24AB5728-4CD9-4697-BADC-33D9E3EB074F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{248A645B-2376-47E8-9AEC-DE026137E790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{248A645B-2376-47E8-9AEC-DE026137E790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{248A645B-2376-47E8-9AEC-DE026137E790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{248A645B-2376-47E8-9AEC-DE026137E790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24AB5728-4CD9-4697-BADC-33D9E3EB074F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24AB5728-4CD9-4697-BADC-33D9E3EB074F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24AB5728-4CD9-4697-BADC-33D9E3EB074F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24AB5728-4CD9-4697-BADC-33D9E3EB074F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B30E239-1F52-45B0-B242-DB512141CC11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B30E239-1F52-45B0-B242-DB512141CC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B30E239-1F52-45B0-B242-DB512141CC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B30E239-1F52-45B0-B242-DB512141CC11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5731E8C1-F619-41C9-9DC5-01D51C17359E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5731E8C1-F619-41C9-9DC5-01D51C17359E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5731E8C1-F619-41C9-9DC5-01D51C17359E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5731E8C1-F619-41C9-9DC5-01D51C17359E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80DEA09B-8740-4319-BA8C-F96078D9B6BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80DEA09B-8740-4319-BA8C-F96078D9B6BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80DEA09B-8740-4319-BA8C-F96078D9B6BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80DEA09B-8740-4319-BA8C-F96078D9B6BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6C8D8A7-07ED-4BAF-8301-B299D62288F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6C8D8A7-07ED-4BAF-8301-B299D62288F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6C8D8A7-07ED-4BAF-8301-B299D62288F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6C8D8A7-07ED-4BAF-8301-B299D62288F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAFBABE5-5A84-49CA-BA71-7349B728CE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFBABE5-5A84-49CA-BA71-7349B728CE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFBABE5-5A84-49CA-BA71-7349B728CE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFBABE5-5A84-49CA-BA71-7349B728CE99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ConsoleTest\ConsoleTest.csproj
+	EndGlobalSection
+EndGlobal
