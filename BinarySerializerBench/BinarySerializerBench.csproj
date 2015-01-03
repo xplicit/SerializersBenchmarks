@@ -29,11 +29,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="BinarySerializer">
-      <HintPath>..\packages\BinarySerializer.2.6.0.0\lib\portable-net40+sl50+win+MonoAndroid10+MonoTouch10\BinarySerializer.dll</HintPath>
-    </Reference>
     <Reference Include="BenchmarkSuite">
       <HintPath>..\lib\BenchmarkSuite.dll</HintPath>
+    </Reference>
+    <Reference Include="BinarySerializer">
+      <HintPath>..\packages\BinarySerializer.3.0.0-alpha7\lib\portable-net40+sl50+win\BinarySerializer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -49,9 +49,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SerializersBenchmarks\SerializersBenchmarks.csproj">
       <Project>{4B30E239-1F52-45B0-B242-DB512141CC11}</Project>
       <Name>SerializersBenchmarks</Name>
@@ -59,5 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Objects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
