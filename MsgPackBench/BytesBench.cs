@@ -96,7 +96,7 @@ namespace MsgPackBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < nIter/10; i++) {
+			for (int i = 0; i < nIter/100; i++) {
 				byte[] res;
 				using (MemoryStream ms = new MemoryStream ()) {
 					ser.Pack (ms, arr);
@@ -121,7 +121,7 @@ namespace MsgPackBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < nIter/10; i++) {
+			for (int i = 0; i < nIter/100; i++) {
 				using (MemoryStream ms = new MemoryStream (data)) {
 					IntArray64K des=ser.Unpack(ms);
 				}

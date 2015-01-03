@@ -116,7 +116,7 @@ namespace ProtoBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < nIter/10; i++) {
+			for (int i = 0; i < nIter/100; i++) {
 				byte[] res;
 				using (MemoryStream ms = new MemoryStream ()) {
 					ProtoBuf.Serializer.Serialize<IntArray64K> (ms, arr);
@@ -141,7 +141,7 @@ namespace ProtoBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < nIter/10; i++) {
+			for (int i = 0; i < nIter/100; i++) {
 				using (MemoryStream ms = new MemoryStream (data)) {
 					IntArray64K des=ProtoBuf.Serializer.Deserialize<IntArray64K> (ms);
 				}
