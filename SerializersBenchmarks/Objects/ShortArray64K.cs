@@ -28,7 +28,7 @@ namespace SerializersBenchmarks.Objects
 		[ProtoMember(1)]
 		#endif
 		#if __BINARY_SERIALIZER_
-		[FieldLength(65536*sizeof(short))]
+		[FieldCount(65536)]
 		#endif
 		public short[] Arr { get; set; }
 
