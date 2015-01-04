@@ -33,7 +33,7 @@
       <HintPath>..\lib\BenchmarkSuite.dll</HintPath>
     </Reference>
     <Reference Include="BinarySerializer">
-      <HintPath>..\packages\BinarySerializer.3.0.0-alpha7\lib\portable-net40+sl50+win\BinarySerializer.dll</HintPath>
+      <HintPath>..\packages\BinarySerializer.3.0.0-beta4\lib\portable-net40+sl50+win\BinarySerializer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

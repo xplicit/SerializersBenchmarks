@@ -29,13 +29,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Salar.Bois">
-      <HintPath>..\packages\Salar.Bois.1.7.0.0\lib\net20\Salar.Bois.dll</HintPath>
-    </Reference>
     <Reference Include="BenchmarkSuite">
       <HintPath>..\lib\BenchmarkSuite.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="Salar.Bois">
+      <HintPath>..\packages\Salar.Bois.1.8.1.0\lib\net40\Salar.Bois.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyClass.cs" />
@@ -44,12 +44,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SerializersBenchmarks\SerializersBenchmarks.csproj">
       <Project>{4B30E239-1F52-45B0-B242-DB512141CC11}</Project>
       <Name>SerializersBenchmarks</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
