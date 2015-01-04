@@ -101,7 +101,7 @@ namespace BinarySerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < nIter/100; i++) {
+			for (int i = 0; i < nIter/40; i++) {
 				byte[] res;
 				using (MemoryStream ms = new MemoryStream ()) {
 					ser.Serialize (ms, arr);
@@ -127,7 +127,7 @@ namespace BinarySerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < nIter/100; i++) {
+			for (int i = 0; i < nIter/40; i++) {
 				using (MemoryStream ms = new MemoryStream (data)) {
 					IntArray64K des=ser.Deserialize<IntArray64K>(ms);
 
