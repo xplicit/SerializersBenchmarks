@@ -32,10 +32,10 @@
     <Reference Include="protobuf-net">
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
     </Reference>
-    <Reference Include="BenchmarkSuite">
-      <HintPath>..\lib\BenchmarkSuite.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="BenchmarkSuite.Framework">
+      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.1\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyClass.cs" />
