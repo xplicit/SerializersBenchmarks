@@ -13,10 +13,11 @@ namespace NetSerializerBench
 
 		public ArraysBench ()
 		{
-			NetSerializer.Serializer.Initialize(new Type[]{typeof(ByteArray64K),typeof(IntArray64K),typeof(LongArray64K),typeof(ShortArray64K)});
+			NetSerializer.Serializer.Initialize(new Type[]{typeof(ByteArray64K),typeof(ByteArray4K),typeof(IntArray64K),typeof(LongArray64K),typeof(ShortArray64K)});
 		}
 
 		[Bench]
+		[Iterations(10000)]
 		public void SerializeByteArray64KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -37,6 +38,7 @@ namespace NetSerializerBench
 		}
 	
 		[Bench]
+		[Iterations(10000)]
 		public void DeserializeByteArray64KStream()
 		{
 
@@ -70,6 +72,62 @@ namespace NetSerializerBench
 		}
 
 		[Bench]
+		[Iterations(100000)]
+		public void SerializeByteArray4KStream()
+		{
+			//BinarySerializer ser = new BinarySerializer ();
+						var arr = ByteArray4K.Create();
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 100000; i++) {
+				byte[] res;
+				using (MemoryStream ms = new MemoryStream ()) {
+					//ser.Serialize (ms, arr);
+					NetSerializer.Serializer.Serialize(ms, arr);
+					res = ms.ToArray ();
+				}
+			}
+
+			b.Stop ();
+		}
+	
+		[Bench]
+		[Iterations(100000)]
+		public void DeserializeByteArray4KStream()
+		{
+
+						var arr = ByteArray4K.Create();
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 100000; i++) {
+				using (MemoryStream ms = new MemoryStream (data)) {
+					ByteArray4K des=(ByteArray4K)NetSerializer.Serializer.Deserialize(ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verification
+			ByteArray4K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=(ByteArray4K)NetSerializer.Serializer.Deserialize(ms);
+			}
+
+			ByteArray4K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(250)]
 		public void SerializeIntArray64KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -90,6 +148,7 @@ namespace NetSerializerBench
 		}
 	
 		[Bench]
+		[Iterations(250)]
 		public void DeserializeIntArray64KStream()
 		{
 
@@ -123,10 +182,11 @@ namespace NetSerializerBench
 		}
 
 		[Bench]
+		[Iterations(250)]
 		public void SerializeLongArray64KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
-			var arr = LongArray64K.Create();
+						var arr = LongArray64K.Create();
 
 			var b = Benchmark.StartNew ();
 
@@ -143,6 +203,7 @@ namespace NetSerializerBench
 		}
 	
 		[Bench]
+		[Iterations(250)]
 		public void DeserializeLongArray64KStream()
 		{
 
@@ -176,6 +237,7 @@ namespace NetSerializerBench
 		}
 
 		[Bench]
+		[Iterations(250)]
 		public void SerializeShortArray64KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -196,6 +258,7 @@ namespace NetSerializerBench
 		}
 	
 		[Bench]
+		[Iterations(250)]
 		public void DeserializeShortArray64KStream()
 		{
 

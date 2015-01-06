@@ -1,9 +1,7 @@
-﻿
-using System;
+﻿using System;
 using BenchmarkSuite.Framework;
 using System.IO;
 using SerializersBenchmarks;
-using SerializersBenchmarks.Objects.Custom;
 using SerializersBenchmarks.Objects.Custom;
 using BinarySerialization;
 
@@ -16,9 +14,10 @@ namespace BinarySerializerBench
 
 		public ArraysBench ()
 		{
-		}
+					}
 
 		[Bench]
+		[Iterations(10000)]
 		public void SerializeByteArray64KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -40,6 +39,7 @@ namespace BinarySerializerBench
 		}
 	
 		[Bench]
+		[Iterations(10000)]
 		public void DeserializeByteArray64KStream()
 		{
 
@@ -74,6 +74,64 @@ namespace BinarySerializerBench
 		}
 
 		[Bench]
+		[Iterations(100000)]
+		public void SerializeByteArray4KStream()
+		{
+			//BinarySerializer ser = new BinarySerializer ();
+			BinarySerializer ser=new BinarySerializer();
+			var arr = ByteArray4K.Create();
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 100000; i++) {
+				byte[] res;
+				using (MemoryStream ms = new MemoryStream ()) {
+					//ser.Serialize (ms, arr);
+					ser.Serialize(ms,arr);
+					res = ms.ToArray ();
+				}
+			}
+
+			b.Stop ();
+		}
+	
+		[Bench]
+		[Iterations(100000)]
+		public void DeserializeByteArray4KStream()
+		{
+
+			BinarySerializer ser=new BinarySerializer();
+			var arr = ByteArray4K.Create();
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(ms,arr);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 100000; i++) {
+				using (MemoryStream ms = new MemoryStream (data)) {
+					ByteArray4K des=ser.Deserialize<ByteArray4K>(ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verification
+			ByteArray4K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ser.Deserialize<ByteArray4K>(ms);
+			}
+
+			ByteArray4K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(250)]
 		public void SerializeIntArray64KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -95,6 +153,7 @@ namespace BinarySerializerBench
 		}
 	
 		[Bench]
+		[Iterations(250)]
 		public void DeserializeIntArray64KStream()
 		{
 
@@ -129,6 +188,7 @@ namespace BinarySerializerBench
 		}
 
 		[Bench]
+		[Iterations(250)]
 		public void SerializeLongArray64KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -150,6 +210,7 @@ namespace BinarySerializerBench
 		}
 	
 		[Bench]
+		[Iterations(250)]
 		public void DeserializeLongArray64KStream()
 		{
 
@@ -184,6 +245,7 @@ namespace BinarySerializerBench
 		}
 
 		[Bench]
+		[Iterations(250)]
 		public void SerializeShortArray64KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -205,6 +267,7 @@ namespace BinarySerializerBench
 		}
 	
 		[Bench]
+		[Iterations(250)]
 		public void DeserializeShortArray64KStream()
 		{
 

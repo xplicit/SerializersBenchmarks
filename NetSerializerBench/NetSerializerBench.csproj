@@ -33,7 +33,7 @@
       <HintPath>..\packages\NetSerializer.2.1.0.0\lib\net40\NetSerializer.dll</HintPath>
     </Reference>
     <Reference Include="BenchmarkSuite.Framework">
-      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.1\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +55,9 @@
       <Link>Objects\LongArray64K.cs</Link>
     </Compile>
     <Compile Include="ArraysBench.cs" />
+    <Compile Include="..\SerializersBenchmarks\Objects\ByteArray4K.cs">
+      <Link>Objects\ByteArray4K.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -26,6 +26,7 @@ namespace <#=NameSpace#>
 #>
 
 		[Bench]
+		[Iterations(<#=typeInfo.Iterations#>)]
 		public void Serialize<#=typeInfo.Name#>Stream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -47,6 +48,7 @@ namespace <#=NameSpace#>
 		}
 	
 		[Bench]
+		[Iterations(<#=typeInfo.Iterations#>)]
 		public void Deserialize<#=typeInfo.Name#>Stream()
 		{
 
@@ -94,6 +96,7 @@ namespace <#=NameSpace#>
 		get {	
 			return new BenchTypeInfo[] {
 		 		new BenchTypeInfo("ByteArray64K",10000),
+		 		new BenchTypeInfo("ByteArray4K",100000),
 		 		new BenchTypeInfo("IntArray64K",250),
 		 		new BenchTypeInfo("LongArray64K",250),
 		 		new BenchTypeInfo("ShortArray64K",250)

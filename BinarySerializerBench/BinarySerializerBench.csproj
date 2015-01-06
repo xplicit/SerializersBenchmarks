@@ -29,11 +29,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="BenchmarkSuite.Framework">
-      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.1\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="BinarySerializer">
       <HintPath>..\packages\BinarySerializer.3.0.0-rc\lib\portable-net40+sl50+win\BinarySerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="BenchmarkSuite.Framework">
+      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +54,9 @@
     </Compile>
     <Compile Include="Templates\ArraysBench.cs">
       <DependentUpon>ArraysBench.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\ByteArray4K.cs">
+      <Link>Objects\ByteArray4K.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

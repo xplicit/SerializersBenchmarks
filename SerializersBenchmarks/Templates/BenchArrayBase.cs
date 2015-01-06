@@ -19,7 +19,7 @@ namespace SerializersBenchmarks.Templates {
     public partial class BenchArrayBase : BenchArrayBaseBase {
         
         
-        #line 88 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+        #line 90 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
 
     public virtual void Usings(){}
      
@@ -29,6 +29,7 @@ namespace SerializersBenchmarks.Templates {
 		get {	
 			return new BenchTypeInfo[] {
 		 		new BenchTypeInfo("ByteArray64K",10000),
+		 		new BenchTypeInfo("ByteArray4K",100000),
 		 		new BenchTypeInfo("IntArray64K",250),
 		 		new BenchTypeInfo("LongArray64K",250),
 		 		new BenchTypeInfo("ShortArray64K",250)
@@ -102,199 +103,223 @@ namespace SerializersBenchmarks.Templates {
             #line hidden
             
             #line 27 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
-            this.Write("\n\t\t[Bench]\n\t\tpublic void Serialize");
+            this.Write("\n\t\t[Bench]\n\t\t[Iterations(");
             
             #line default
             #line hidden
             
             #line 29 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Iterations));
+            
+            #line default
+            #line hidden
+            
+            #line 29 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write(")]\n\t\tpublic void Serialize");
+            
+            #line default
+            #line hidden
+            
+            #line 30 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Name));
             
             #line default
             #line hidden
             
-            #line 29 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 30 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write("Stream()\n\t\t{\n\t\t\t//BinarySerializer ser = new BinarySerializer ();\n\t\t\t");
             
             #line default
             #line hidden
             
-            #line 32 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 33 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
  InstantiateSerializer("ser",typeInfo.Name); 
             
             #line default
             #line hidden
             
-            #line 33 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 34 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write("\t\t\tvar arr = ");
             
             #line default
             #line hidden
             
-            #line 33 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 34 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Name));
             
             #line default
             #line hidden
             
-            #line 33 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 34 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(".Create();\n\n\t\t\tvar b = Benchmark.StartNew ();\n\n\t\t\tfor (int i = 0; i < ");
             
             #line default
             #line hidden
             
-            #line 37 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 38 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Iterations));
             
             #line default
             #line hidden
             
-            #line 37 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 38 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write("; i++) {\n\t\t\t\tbyte[] res;\n\t\t\t\tusing (MemoryStream ms = new MemoryStream ()) {\n\t\t\t\t\t//ser.Serialize (ms, arr);\n\t\t\t\t\t");
             
             #line default
             #line hidden
             
-            #line 41 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
- Serialize("ser","arr",typeInfo.Name,"ms"); 
-            
-            #line default
-            #line hidden
-            
             #line 42 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
-            this.Write("\t\t\t\t\tres = ms.ToArray ();\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tb.Stop ();\n\t\t}\n\t\n\t\t[Bench]\n\t\tpublic void Deserialize");
-            
-            #line default
-            #line hidden
-            
-            #line 50 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Name));
-            
-            #line default
-            #line hidden
-            
-            #line 50 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
-            this.Write("Stream()\n\t\t{\n\n\t\t\t");
-            
-            #line default
-            #line hidden
-            
-            #line 53 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
- InstantiateSerializer("ser",typeInfo.Name); 
-            
-            #line default
-            #line hidden
-            
-            #line 54 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
-            this.Write("\t\t\tvar arr = ");
-            
-            #line default
-            #line hidden
-            
-            #line 54 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Name));
-            
-            #line default
-            #line hidden
-            
-            #line 54 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
-            this.Write(".Create();\n\t\t\tbyte[] data;\n\n\t\t\tusing (MemoryStream ms = new MemoryStream ()) {\n\t\t\t\t");
-            
-            #line default
-            #line hidden
-            
-            #line 58 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
  Serialize("ser","arr",typeInfo.Name,"ms"); 
             
             #line default
             #line hidden
             
-            #line 59 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
-            this.Write("\t\t\t\tdata = ms.ToArray ();\n\t\t\t}\n\n\t\t\tvar b = Benchmark.StartNew ();\n\n\t\t\tfor (int i = 0; i < ");
+            #line 43 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write("\t\t\t\t\tres = ms.ToArray ();\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tb.Stop ();\n\t\t}\n\t\n\t\t[Bench]\n\t\t[Iterations(");
             
             #line default
             #line hidden
             
-            #line 64 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 51 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Iterations));
             
             #line default
             #line hidden
             
-            #line 64 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 51 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write(")]\n\t\tpublic void Deserialize");
+            
+            #line default
+            #line hidden
+            
+            #line 52 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Name));
+            
+            #line default
+            #line hidden
+            
+            #line 52 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write("Stream()\n\t\t{\n\n\t\t\t");
+            
+            #line default
+            #line hidden
+            
+            #line 55 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+ InstantiateSerializer("ser",typeInfo.Name); 
+            
+            #line default
+            #line hidden
+            
+            #line 56 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write("\t\t\tvar arr = ");
+            
+            #line default
+            #line hidden
+            
+            #line 56 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Name));
+            
+            #line default
+            #line hidden
+            
+            #line 56 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write(".Create();\n\t\t\tbyte[] data;\n\n\t\t\tusing (MemoryStream ms = new MemoryStream ()) {\n\t\t\t\t");
+            
+            #line default
+            #line hidden
+            
+            #line 60 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+ Serialize("ser","arr",typeInfo.Name,"ms"); 
+            
+            #line default
+            #line hidden
+            
+            #line 61 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write("\t\t\t\tdata = ms.ToArray ();\n\t\t\t}\n\n\t\t\tvar b = Benchmark.StartNew ();\n\n\t\t\tfor (int i = 0; i < ");
+            
+            #line default
+            #line hidden
+            
+            #line 66 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Iterations));
+            
+            #line default
+            #line hidden
+            
+            #line 66 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write("; i++) {\n\t\t\t\tusing (MemoryStream ms = new MemoryStream (data)) {\n\t\t\t\t\t");
             
             #line default
             #line hidden
             
-            #line 66 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 68 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Name));
             
             #line default
             #line hidden
             
-            #line 66 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 68 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(" des=");
             
             #line default
             #line hidden
             
-            #line 66 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 68 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
  Deserialize("ser","arr",typeInfo.Name,"ms"); 
             
             #line default
             #line hidden
             
-            #line 67 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 69 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write("\t\t\t\t}\n\t\t\t}\n\n\t\t\tb.Stop ();\n\n\t\t\t//Verification\n\t\t\t");
             
             #line default
             #line hidden
             
-            #line 73 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 75 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Name));
             
             #line default
             #line hidden
             
-            #line 73 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 75 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(" des1;\n\n\t\t\tusing (MemoryStream ms = new MemoryStream (data)) {\n\t\t\t\tdes1=");
             
             #line default
             #line hidden
             
-            #line 76 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 78 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
  Deserialize("ser","arr",typeInfo.Name,"ms"); 
             
             #line default
             #line hidden
             
-            #line 77 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 79 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write("\t\t\t}\n\n\t\t\t");
             
             #line default
             #line hidden
             
-            #line 79 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 81 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Name));
             
             #line default
             #line hidden
             
-            #line 79 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 81 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write(".Compare (arr, des1);\n\n\t\t}\n");
             
             #line default
             #line hidden
             
-            #line 82 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 84 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
  	}
 
             
             #line default
             #line hidden
             
-            #line 84 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
+            #line 86 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
             this.Write("\n\t}\n}\n\n");
             
             #line default

@@ -42,6 +42,7 @@
       <DependentUpon>BenchArrayBase.tt</DependentUpon>
     </Compile>
     <Compile Include="BenchTypeInfo.cs" />
+    <Compile Include="Objects\ByteArray4K.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

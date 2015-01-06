@@ -34,7 +34,7 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="BenchmarkSuite.Framework">
-      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.1\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +56,9 @@
       <DependentUpon>ArraysBench.tt</DependentUpon>
     </Compile>
     <Compile Include="ArraysBench.cs" />
+    <Compile Include="..\SerializersBenchmarks\Objects\ByteArray4K.cs">
+      <Link>Objects\ByteArray4K.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

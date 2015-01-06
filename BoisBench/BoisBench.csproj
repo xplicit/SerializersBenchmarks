@@ -34,7 +34,7 @@
       <HintPath>..\packages\Salar.Bois.1.8.1.0\lib\net40\Salar.Bois.dll</HintPath>
     </Reference>
     <Reference Include="BenchmarkSuite.Framework">
-      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.1\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
