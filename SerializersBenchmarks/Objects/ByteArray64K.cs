@@ -50,6 +50,11 @@ namespace SerializersBenchmarks.Objects
 
 			return true;
 		}
+
+		public static ByteArray64K Create()
+		{
+			return new ByteArray64K (){Arr=DataFiller.FillByteArray(65536)};
+		}
 	}
 }
 

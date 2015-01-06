@@ -51,6 +51,10 @@ namespace SerializersBenchmarks.Objects
 			return true;
 		}
 
+		public static IntArray64K Create()
+		{
+			return new IntArray64K (){Arr=DataFiller.FillIntArray(65536)};
+		}
 	}
 }
 

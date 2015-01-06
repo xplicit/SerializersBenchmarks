@@ -32,7 +32,7 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		public short[] Arr { get; set; }
 
-		public static bool Compare(LongArray64K arr1, LongArray64K arr2)
+		public static bool Compare(ShortArray64K arr1, ShortArray64K arr2)
 		{
 			if (arr1 == null || arr1.Arr == null)
 				throw new ArgumentNullException ("arr1");
@@ -49,6 +49,11 @@ namespace SerializersBenchmarks.Objects
 				throw new ArgumentException ("Arrays are not equal");
 
 			return true;
+		}
+
+		public static ShortArray64K Create()
+		{
+			return new ShortArray64K (){Arr=DataFiller.FillShortArray(65536)};
 		}
 
 	}

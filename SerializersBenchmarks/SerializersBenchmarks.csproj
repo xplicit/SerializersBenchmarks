@@ -38,9 +38,20 @@
     <Compile Include="Objects\IntArray64K.cs" />
     <Compile Include="Objects\ShortArray64K.cs" />
     <Compile Include="Objects\LongArray64K.cs" />
+    <Compile Include="Templates\BenchArrayBase.cs">
+      <DependentUpon>BenchArrayBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BenchTypeInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Objects\" />
+    <Folder Include="Templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Templates\BenchArrayBase.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BenchArrayBase.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>

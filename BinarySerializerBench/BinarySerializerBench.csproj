@@ -29,11 +29,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="BinarySerializer">
-      <HintPath>..\packages\BinarySerializer.3.0.0-beta4\lib\portable-net40+sl50+win\BinarySerializer.dll</HintPath>
-    </Reference>
     <Reference Include="BenchmarkSuite.Framework">
       <HintPath>..\packages\BenchmarkSuite.Framework.1.0.1\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="BinarySerializer">
+      <HintPath>..\packages\BinarySerializer.3.0.0-rc\lib\portable-net40+sl50+win\BinarySerializer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +46,15 @@
     <Compile Include="..\SerializersBenchmarks\Objects\IntArray64K.cs">
       <Link>Objects\IntArray64K.cs</Link>
     </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\ShortArray64K.cs">
+      <Link>Objects\ShortArray64K.cs</Link>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\LongArray64K.cs">
+      <Link>Objects\LongArray64K.cs</Link>
+    </Compile>
+    <Compile Include="Templates\ArraysBench.cs">
+      <DependentUpon>ArraysBench.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -56,8 +65,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Objects\" />
+    <Folder Include="Templates\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Templates\ArraysBench.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ArraysBench.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>

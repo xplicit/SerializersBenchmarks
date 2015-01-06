@@ -51,6 +51,11 @@ namespace SerializersBenchmarks.Objects
 			return true;
 		}
 
+		public static LongArray64K Create()
+		{
+			return new LongArray64K (){Arr=DataFiller.FillLongArray(65536)};
+		}
+
 	}
 }
 

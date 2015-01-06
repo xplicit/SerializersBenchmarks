@@ -40,7 +40,10 @@
   <ItemGroup>
     <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BytesBench.cs" />
+    <Compile Include="Templates\ArraysBench.cs">
+      <DependentUpon>ArraysBench.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArraysBench.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -51,5 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Templates\ArraysBench.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ArraysBench.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\" />
   </ItemGroup>
 </Project>
