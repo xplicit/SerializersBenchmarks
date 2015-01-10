@@ -43,6 +43,8 @@
     </Compile>
     <Compile Include="BenchTypeInfo.cs" />
     <Compile Include="Objects\ByteArray4K.cs" />
+    <Compile Include="Objects\PrimitiveType.cs" />
+    <Compile Include="Objects\IntList4K.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

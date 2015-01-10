@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using BenchmarkSuite.Framework;
 using System.IO;
 using SerializersBenchmarks;
@@ -298,6 +299,120 @@ namespace BoisSerializerBench
 			}
 
 			ShortArray64K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(1000000)]
+		public void SerializePrimitiveTypeStream()
+		{
+			//BinarySerializer ser = new BinarySerializer ();
+			var ser=new BoisSerializer();
+			var arr = PrimitiveType.Create();
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 1000000; i++) {
+				byte[] res;
+				using (MemoryStream ms = new MemoryStream ()) {
+					//ser.Serialize (ms, arr);
+					ser.Serialize(arr,ms);
+					res = ms.ToArray ();
+				}
+			}
+
+			b.Stop ();
+		}
+	
+		[Bench]
+		[Iterations(1000000)]
+		public void DeserializePrimitiveTypeStream()
+		{
+
+			var ser=new BoisSerializer();
+			var arr = PrimitiveType.Create();
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(arr,ms);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 1000000; i++) {
+				using (MemoryStream ms = new MemoryStream (data)) {
+					PrimitiveType des=ser.Deserialize<PrimitiveType>(ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verification
+			PrimitiveType des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ser.Deserialize<PrimitiveType>(ms);
+			}
+
+			PrimitiveType.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(1000)]
+		public void SerializeIntList4KStream()
+		{
+			//BinarySerializer ser = new BinarySerializer ();
+			var ser=new BoisSerializer();
+			var arr = IntList4K.Create();
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 1000; i++) {
+				byte[] res;
+				using (MemoryStream ms = new MemoryStream ()) {
+					//ser.Serialize (ms, arr);
+					ser.Serialize(arr,ms);
+					res = ms.ToArray ();
+				}
+			}
+
+			b.Stop ();
+		}
+	
+		[Bench]
+		[Iterations(1000)]
+		public void DeserializeIntList4KStream()
+		{
+
+			var ser=new BoisSerializer();
+			var arr = IntList4K.Create();
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(arr,ms);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 1000; i++) {
+				using (MemoryStream ms = new MemoryStream (data)) {
+					IntList4K des=ser.Deserialize<IntList4K>(ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verification
+			IntList4K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ser.Deserialize<IntList4K>(ms);
+			}
+
+			IntList4K.Compare (arr, des1);
 
 		}
 

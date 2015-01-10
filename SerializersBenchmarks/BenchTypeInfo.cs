@@ -4,13 +4,15 @@ namespace SerializersBenchmarks
 {
 	public class BenchTypeInfo
 	{
-		public string Name { get; set; }
+		public Type Type { get; set; }
+
+		public string Name { get { return Type.Name; } }
 
 		public int Iterations { get; set; }
 
-		public BenchTypeInfo(string name, int iter)
+		public BenchTypeInfo(Type type, int iter)
 		{
-			Name = name;
+			Type = type;
 			Iterations = iter;
 		}
 	}

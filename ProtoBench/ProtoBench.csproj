@@ -59,6 +59,12 @@
     <Compile Include="..\SerializersBenchmarks\Objects\ByteArray4K.cs">
       <Link>Objects\ByteArray4K.cs</Link>
     </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\PrimitiveType.cs">
+      <Link>Objects\PrimitiveType.cs</Link>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\IntList4K.cs">
+      <Link>Objects\IntList4K.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
