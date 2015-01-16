@@ -30,6 +30,9 @@ namespace SerializersBenchmarks.Objects
 		#if __BOND_
 		[global::Bond.Id(0)]
 		#endif
+		#if __BINARY_SERIALIZER_
+		[FieldOrder(1)]
+		#endif
 		public bool BoolVar { get; set; }
 
 		#if __PROTO_
@@ -37,6 +40,9 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		#if __BOND_
 		[global::Bond.Id(1)]
+		#endif
+		#if __BINARY_SERIALIZER_
+		[FieldOrder(2)]
 		#endif
 		public byte ByteVar { get; set; }
 
@@ -46,6 +52,9 @@ namespace SerializersBenchmarks.Objects
 		#if __BOND_
 		[global::Bond.Id(2)]
 		#endif
+		#if __BINARY_SERIALIZER_
+		[FieldOrder(3)]
+		#endif
 		public short ShortVart { get; set; }
 
 		#if __PROTO_
@@ -53,6 +62,9 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		#if __BOND_
 		[global::Bond.Id(3)]
+		#endif
+		#if __BINARY_SERIALIZER_
+		[FieldOrder(4)]
 		#endif
 		public int IntVar { get; set; }
 
@@ -62,6 +74,9 @@ namespace SerializersBenchmarks.Objects
 		#if __BOND_
 		[global::Bond.Id(4)]
 		#endif
+		#if __BINARY_SERIALIZER_
+		[FieldOrder(5)]
+		#endif
 		public long LongVar { get; set; }
 
 		#if __PROTO_
@@ -69,6 +84,9 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		#if __BOND_
 		[global::Bond.Id(5), global::Bond.Type(typeof(UInt16))]
+		#endif
+		#if __BINARY_SERIALIZER_
+		[FieldOrder(6)]
 		#endif
 		public char CharVar { get; set; }
 
@@ -78,6 +96,9 @@ namespace SerializersBenchmarks.Objects
 		#if __BOND_
 		[global::Bond.Id(6)]
 		#endif
+		#if __BINARY_SERIALIZER_
+		[FieldOrder(7)]
+		#endif
 		public float FloatVar { get; set; }
 
 		#if __PROTO_
@@ -85,6 +106,9 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		#if __BOND_
 		[global::Bond.Id(7)]
+		#endif
+		#if __BINARY_SERIALIZER_
+		[FieldOrder(8)]
 		#endif
 		public double DoubleVar { get; set; }
 

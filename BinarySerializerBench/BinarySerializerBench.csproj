@@ -29,11 +29,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="BinarySerializer">
-      <HintPath>..\packages\BinarySerializer.3.0.0-rc\lib\portable-net40+sl50+win\BinarySerializer.dll</HintPath>
-    </Reference>
     <Reference Include="BenchmarkSuite.Framework">
       <HintPath>..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="BinarySerializer">
+      <HintPath>..\packages\BinarySerializer.3.0.0\lib\portable-net40+sl50+win\BinarySerializer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
