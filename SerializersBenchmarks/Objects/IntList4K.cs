@@ -9,7 +9,7 @@ using ProtoBuf;
 using BinarySerialization;
 #endif
 
-#if __PROTO_ || __NEED_SERIALIZABLE_ATTR_ || __BINARY_SERIALIZER_
+#if __PROTO_ || __NEED_SERIALIZABLE_ATTR_ || __BINARY_SERIALIZER_ || __BOND_
 namespace SerializersBenchmarks.Objects.Custom
 #else
 namespace SerializersBenchmarks.Objects
@@ -21,6 +21,9 @@ namespace SerializersBenchmarks.Objects
 	#if __NEED_SERIALIZABLE_ATTR_
 	[Serializable]
 	#endif	
+	#if __BOND_
+	[global::Bond.Schema]
+	#endif
 	public class IntList4K
 	{
 		#if __PROTO_
@@ -28,6 +31,9 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		#if __BINARY_SERIALIZER_
 		[FieldCount(4096)]
+		#endif
+		#if __BOND_
+		[global::Bond.Id(0)]
 		#endif
 		public List<int> Arr { get; set; }
 

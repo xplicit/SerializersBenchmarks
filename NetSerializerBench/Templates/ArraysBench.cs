@@ -26,12 +26,10 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 10000; i++) {
-				byte[] res;
-				using (MemoryStream ms = new MemoryStream ()) {
-					//ser.Serialize (ms, arr);
+			using (MemoryStream ms = new MemoryStream ()) {
+				for (int i = 0; i < 10000; i++) {
+					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
-					res = ms.ToArray ();
 				}
 			}
 
@@ -53,8 +51,9 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 10000; i++) {
-				using (MemoryStream ms = new MemoryStream (data)) {
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 10000; i++) {
+					ms.Position = 0;
 					ByteArray64K des=(ByteArray64K)NetSerializer.Serializer.Deserialize(ms);
 				}
 			}
@@ -81,12 +80,10 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 100000; i++) {
-				byte[] res;
-				using (MemoryStream ms = new MemoryStream ()) {
-					//ser.Serialize (ms, arr);
+			using (MemoryStream ms = new MemoryStream ()) {
+				for (int i = 0; i < 100000; i++) {
+					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
-					res = ms.ToArray ();
 				}
 			}
 
@@ -108,8 +105,9 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 100000; i++) {
-				using (MemoryStream ms = new MemoryStream (data)) {
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 100000; i++) {
+					ms.Position = 0;
 					ByteArray4K des=(ByteArray4K)NetSerializer.Serializer.Deserialize(ms);
 				}
 			}
@@ -136,12 +134,10 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 250; i++) {
-				byte[] res;
-				using (MemoryStream ms = new MemoryStream ()) {
-					//ser.Serialize (ms, arr);
+			using (MemoryStream ms = new MemoryStream ()) {
+				for (int i = 0; i < 250; i++) {
+					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
-					res = ms.ToArray ();
 				}
 			}
 
@@ -163,8 +159,9 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 250; i++) {
-				using (MemoryStream ms = new MemoryStream (data)) {
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 250; i++) {
+					ms.Position = 0;
 					IntArray64K des=(IntArray64K)NetSerializer.Serializer.Deserialize(ms);
 				}
 			}
@@ -191,12 +188,10 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 250; i++) {
-				byte[] res;
-				using (MemoryStream ms = new MemoryStream ()) {
-					//ser.Serialize (ms, arr);
+			using (MemoryStream ms = new MemoryStream ()) {
+				for (int i = 0; i < 250; i++) {
+					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
-					res = ms.ToArray ();
 				}
 			}
 
@@ -218,8 +213,9 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 250; i++) {
-				using (MemoryStream ms = new MemoryStream (data)) {
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 250; i++) {
+					ms.Position = 0;
 					LongArray64K des=(LongArray64K)NetSerializer.Serializer.Deserialize(ms);
 				}
 			}
@@ -246,12 +242,10 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 250; i++) {
-				byte[] res;
-				using (MemoryStream ms = new MemoryStream ()) {
-					//ser.Serialize (ms, arr);
+			using (MemoryStream ms = new MemoryStream ()) {
+				for (int i = 0; i < 250; i++) {
+					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
-					res = ms.ToArray ();
 				}
 			}
 
@@ -273,8 +267,9 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 250; i++) {
-				using (MemoryStream ms = new MemoryStream (data)) {
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 250; i++) {
+					ms.Position = 0;
 					ShortArray64K des=(ShortArray64K)NetSerializer.Serializer.Deserialize(ms);
 				}
 			}
@@ -301,12 +296,10 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 1000000; i++) {
-				byte[] res;
-				using (MemoryStream ms = new MemoryStream ()) {
-					//ser.Serialize (ms, arr);
+			using (MemoryStream ms = new MemoryStream ()) {
+				for (int i = 0; i < 1000000; i++) {
+					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
-					res = ms.ToArray ();
 				}
 			}
 
@@ -328,8 +321,9 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 1000000; i++) {
-				using (MemoryStream ms = new MemoryStream (data)) {
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 1000000; i++) {
+					ms.Position = 0;
 					PrimitiveType des=(PrimitiveType)NetSerializer.Serializer.Deserialize(ms);
 				}
 			}
@@ -356,12 +350,10 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 1000; i++) {
-				byte[] res;
-				using (MemoryStream ms = new MemoryStream ()) {
-					//ser.Serialize (ms, arr);
+			using (MemoryStream ms = new MemoryStream ()) {
+				for (int i = 0; i < 1000; i++) {
+					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
-					res = ms.ToArray ();
 				}
 			}
 
@@ -383,8 +375,9 @@ namespace NetSerializerBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 1000; i++) {
-				using (MemoryStream ms = new MemoryStream (data)) {
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 1000; i++) {
+					ms.Position = 0;
 					IntList4K des=(IntList4K)NetSerializer.Serializer.Deserialize(ms);
 				}
 			}

@@ -1,0 +1,20 @@
+﻿namespace BondBench.Schemas
+
+struct Primitive
+{
+    0: bool BoolVar;
+
+    1: uint8 ByteVar;
+
+    2: int16 ShortVar;
+
+    3: int32 IntVar;
+
+    4: int64 LongVar;
+
+    5: float FloatVar;
+
+    6: double DoubleVar;
+
+    7: char CharVar;
+}

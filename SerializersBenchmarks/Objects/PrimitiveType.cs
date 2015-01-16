@@ -7,7 +7,7 @@ using ProtoBuf;
 using BinarySerialization;
 #endif
 
-#if __PROTO_ || __NEED_SERIALIZABLE_ATTR_ || __BINARY_SERIALIZER_
+#if __PROTO_ || __NEED_SERIALIZABLE_ATTR_ || __BINARY_SERIALIZER_ || __BOND_
 namespace SerializersBenchmarks.Objects.Custom
 #else
 namespace SerializersBenchmarks.Objects
@@ -19,45 +19,72 @@ namespace SerializersBenchmarks.Objects
 	#if __NEED_SERIALIZABLE_ATTR_
 	[Serializable]
 	#endif	
+	#if __BOND_
+	[global::Bond.Schema]
+	#endif
 	public class PrimitiveType
 	{
 		#if __PROTO_
 		[ProtoMember(1)]
+		#endif
+		#if __BOND_
+		[global::Bond.Id(0)]
 		#endif
 		public bool BoolVar { get; set; }
 
 		#if __PROTO_
 		[ProtoMember(2)]
 		#endif
+		#if __BOND_
+		[global::Bond.Id(1)]
+		#endif
 		public byte ByteVar { get; set; }
 
 		#if __PROTO_
 		[ProtoMember(3)]
+		#endif
+		#if __BOND_
+		[global::Bond.Id(2)]
 		#endif
 		public short ShortVart { get; set; }
 
 		#if __PROTO_
 		[ProtoMember(4)]
 		#endif
+		#if __BOND_
+		[global::Bond.Id(3)]
+		#endif
 		public int IntVar { get; set; }
 
 		#if __PROTO_
 		[ProtoMember(5)]
+		#endif
+		#if __BOND_
+		[global::Bond.Id(4)]
 		#endif
 		public long LongVar { get; set; }
 
 		#if __PROTO_
 		[ProtoMember(6)]
 		#endif
+		#if __BOND_
+		[global::Bond.Id(5), global::Bond.Type(typeof(UInt16))]
+		#endif
 		public char CharVar { get; set; }
 
 		#if __PROTO_
 		[ProtoMember(7)]
 		#endif
+		#if __BOND_
+		[global::Bond.Id(6)]
+		#endif
 		public float FloatVar { get; set; }
 
 		#if __PROTO_
 		[ProtoMember(8)]
+		#endif
+		#if __BOND_
+		[global::Bond.Id(7)]
 		#endif
 		public double DoubleVar { get; set; }
 

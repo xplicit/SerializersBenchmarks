@@ -1,5 +1,6 @@
 ﻿<#@ template language="C#" #>
 <#@ assembly name="System.Core" #>
+<#@ assembly name="${TargetDir}/SerializersBenchmarks.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -10,7 +11,10 @@ using System;
 using BenchmarkSuite.Framework;
 using System.IO;
 using SerializersBenchmarks;
-<# Usings(); #>
+using SerializersBenchmarks.Objects.Custom;
+using Bond;
+using Bond.Protocols;
+using Bond.IO.Unsafe;
 
 namespace <#=NameSpace#>
 {
@@ -31,17 +35,17 @@ namespace <#=NameSpace#>
 		[Iterations(<#=typeInfo.Iterations#>)]
 		public void Serialize<#=typeInfo.Name#>Stream()
 		{
-			//BinarySerializer ser = new BinarySerializer ();
-			<# InstantiateSerializer("ser",typeInfo.Name); #>
+			var output = new OutputBuffer();
+			var writer = new CompactBinaryWriter<OutputBuffer>(output);
+
+			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(<#=typeInfo.Name#>));
 			var arr = <#=typeInfo.Name#>.Create();
 
 			var b = Benchmark.StartNew ();
 
-			using (MemoryStream ms = new MemoryStream ()) {
-				for (int i = 0; i < <#=typeInfo.Iterations#>; i++) {
-					ms.Position = 0;
-					<# Serialize("ser","arr",typeInfo.Name,"ms"); #>
-				}
+			for (int i = 0; i < <#=typeInfo.Iterations#>; i++) {
+				output.Position = 0;
+				ser.Serialize (arr, writer);
 			}
 
 			b.Stop ();
@@ -51,23 +55,24 @@ namespace <#=NameSpace#>
 		[Iterations(<#=typeInfo.Iterations#>)]
 		public void Deserialize<#=typeInfo.Name#>Stream()
 		{
+			var output = new OutputBuffer();
+			var writer = new CompactBinaryWriter<OutputBuffer>(output);
 
-			<# InstantiateSerializer("ser",typeInfo.Name); #>
+			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(<#=typeInfo.Name#>));
+			var deser = new Deserializer<CompactBinaryReader<InputBuffer>>(typeof(<#=typeInfo.Name#>));
 			var arr = <#=typeInfo.Name#>.Create();
 			byte[] data;
 
-			using (MemoryStream ms = new MemoryStream ()) {
-				<# Serialize("ser","arr",typeInfo.Name,"ms"); #>
-				data = ms.ToArray ();
-			}
+			ser.Serialize (arr, writer);
+
+			var input = new InputBuffer(output.Data);
+			var reader = new CompactBinaryReader<InputBuffer>(input);
 
 			var b = Benchmark.StartNew ();
 
-			using (MemoryStream ms = new MemoryStream (data)) {
-				for (int i = 0; i < <#=typeInfo.Iterations#>; i++) {
-					ms.Position = 0;
-					<#=typeInfo.Name#> des=<# Deserialize("ser","arr",typeInfo.Name,"ms"); #>
-				}
+			for (int i = 0; i < <#=typeInfo.Iterations#>; i++) {
+				input.Position = 0;
+				var des = deser.Deserialize<<#=typeInfo.Name#>>(reader);
 			}
 
 			b.Stop ();
@@ -75,9 +80,8 @@ namespace <#=NameSpace#>
 			//Verification
 			<#=typeInfo.Name#> des1;
 
-			using (MemoryStream ms = new MemoryStream (data)) {
-				des1=<# Deserialize("ser","arr",typeInfo.Name,"ms"); #>
-			}
+			input.Position = 0;
+			des1 = deser.Deserialize<<#=typeInfo.Name#>>(reader);
 
 			<#=typeInfo.Name#>.Compare (arr, des1);
 
@@ -91,7 +95,7 @@ namespace <#=NameSpace#>
 <#+
     public virtual void Usings(){}
      
-	public virtual string NameSpace {get {return "test";}}
+	public virtual string NameSpace {get {return "BondBench";}}
 
 	public virtual BenchTypeInfo[] SerializedTypes {
 		get {	
