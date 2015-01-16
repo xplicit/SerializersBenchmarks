@@ -3,10 +3,10 @@ using System.Linq;
 
 namespace BondBench.Schemas
 {
-	public partial class ByteArray64K
+	public partial class ArraySegment64K
 	{
 
-		public static bool Compare(ByteArray64K arr1, ByteArray64K arr2)
+		public static bool Compare(ArraySegment64K arr1, ArraySegment64K arr2)
 		{
 			if (arr1 == null || arr1.Arr == null)
 				throw new ArgumentNullException ("arr1");
@@ -25,13 +25,19 @@ namespace BondBench.Schemas
 			return true;
 		}
 
-		public static ByteArray64K Create()
+		public static ArraySegment64K Create()
 		{
-			var b = new ByteArray64K ();
-			b.Arr = new ArraySegment<byte>(SerializersBenchmarks.DataFiller.FillByteArray(65536));
+			return Create (100);
+		}
+
+		public static ArraySegment64K Create(int seed)
+		{
+			var b = new ArraySegment64K ();
+			b.Arr = new ArraySegment<byte>(SerializersBenchmarks.DataFiller.FillByteArray(65536, seed));
 
 			return b;
 		}
+
 
 	}
 }

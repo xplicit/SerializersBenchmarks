@@ -1,6 +1,6 @@
 ﻿namespace BondBench.Schemas
 
-struct ByteArray64K
+struct ArraySegment64K
 {
     0: blob Arr;
 }
