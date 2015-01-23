@@ -34,8 +34,8 @@ namespace SerializersBenchmarks.Objects
 		[FieldCount(4096)]
 		#endif
 		#if __BOND_
-//		[global::Bond.Id(0)]
-		[global::Bond.Id(0), global::Bond.Type(typeof(global::Bond.Tag.blob))]
+		[global::Bond.Id(0)]
+//		[global::Bond.Id(0), global::Bond.Type(typeof(global::Bond.Tag.blob))]
 		#endif
 		public byte[] Arr { get; set; }
 
