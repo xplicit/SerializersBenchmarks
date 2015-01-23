@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9981C0E8-D10E-460E-8E19-61EDB306601C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AvroBench</RootNamespace>
+    <AssemblyName>AvroBench</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;__AVRO_</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <DefineConstants>__AVRO_</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Hadoop.Avro">
+      <HintPath>..\packages\Microsoft.Hadoop.Avro.1.4.0.0\lib\net40\Microsoft.Hadoop.Avro.dll</HintPath>
+    </Reference>
+    <Reference Include="BenchmarkSuite.Framework">
+      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates\ArraysBench.cs">
+      <DependentUpon>ArraysBench.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\ByteArray4K.cs">
+      <Link>Objects\ByteArray4K.cs</Link>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\ByteArray64K.cs">
+      <Link>Objects\ByteArray64K.cs</Link>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\IntArray64K.cs">
+      <Link>Objects\IntArray64K.cs</Link>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\IntList4K.cs">
+      <Link>Objects\IntList4K.cs</Link>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\LongArray64K.cs">
+      <Link>Objects\LongArray64K.cs</Link>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\PrimitiveType.cs">
+      <Link>Objects\PrimitiveType.cs</Link>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\ShortArray64K.cs">
+      <Link>Objects\ShortArray64K.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Templates\ArraysBench.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ArraysBench.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SerializersBenchmarks\SerializersBenchmarks.csproj">
+      <Project>{4B30E239-1F52-45B0-B242-DB512141CC11}</Project>
+      <Name>SerializersBenchmarks</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\" />
+    <Folder Include="Objects\" />
+  </ItemGroup>
+</Project>

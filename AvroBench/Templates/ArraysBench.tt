@@ -1,0 +1,35 @@
+﻿<#@ template language="C#" inherits="BenchArrayBase" #>
+<#@ assembly name="${TargetDir}/SerializersBenchmarks.dll" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="SerializersBenchmarks.Templates" #>
+ 
+<# base.TransformText(); #>
+
+<#+public override void Usings() {#>
+using SerializersBenchmarks.Objects.Custom;
+using Microsoft.Hadoop.Avro;
+using Microsoft.Hadoop.Avro.Container;
+<#+}
+
+public override string NameSpace {get {return "AvroBench";}}
+
+public override void InstantiateSerializer(string name, string type) 
+{
+ base.WriteLine("var {0} = AvroSerializer.Create<{1}> ();",name, type);
+}
+
+public override void Serialize(string name, string objname, string objtype, string stream) 
+{
+ //ser.Serialize(ms,arr);
+ base.WriteLine("{0}.Serialize({1},{2});",name,stream,objname);
+}
+
+public override void Deserialize(string name, string objname, string objtype, string stream)
+{
+ //ser.Deserialize<objType>(ms);
+ base.WriteLine("{0}.Deserialize({1});",name,stream);
+}
+#>

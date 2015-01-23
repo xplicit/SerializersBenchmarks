@@ -6,8 +6,11 @@ using ProtoBuf;
 #if __BINARY_SERIALIZER_
 using BinarySerialization;
 #endif
+#if __AVRO_
+using System.Runtime.Serialization;
+#endif
 
-#if __PROTO_ || __NEED_SERIALIZABLE_ATTR_ || __BINARY_SERIALIZER_ || __BOND_
+#if __PROTO_ || __NEED_SERIALIZABLE_ATTR_ || __BINARY_SERIALIZER_ || __BOND_ || __AVRO_
 namespace SerializersBenchmarks.Objects.Custom
 #else
 namespace SerializersBenchmarks.Objects
@@ -22,6 +25,9 @@ namespace SerializersBenchmarks.Objects
 	#if __BOND_
 	[global::Bond.Schema]
 	#endif
+	#if __AVRO_
+	[DataContract]
+	#endif
 	public class PrimitiveType
 	{
 		#if __PROTO_
@@ -32,6 +38,9 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		#if __BINARY_SERIALIZER_
 		[FieldOrder(1)]
+		#endif
+		#if __AVRO_
+		[DataMember]
 		#endif
 		public bool BoolVar { get; set; }
 
@@ -44,6 +53,9 @@ namespace SerializersBenchmarks.Objects
 		#if __BINARY_SERIALIZER_
 		[FieldOrder(2)]
 		#endif
+		#if __AVRO_
+		[DataMember]
+		#endif
 		public byte ByteVar { get; set; }
 
 		#if __PROTO_
@@ -54,6 +66,9 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		#if __BINARY_SERIALIZER_
 		[FieldOrder(3)]
+		#endif
+		#if __AVRO_
+		[DataMember]
 		#endif
 		public short ShortVart { get; set; }
 
@@ -66,6 +81,9 @@ namespace SerializersBenchmarks.Objects
 		#if __BINARY_SERIALIZER_
 		[FieldOrder(4)]
 		#endif
+		#if __AVRO_
+		[DataMember]
+		#endif
 		public int IntVar { get; set; }
 
 		#if __PROTO_
@@ -76,6 +94,9 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		#if __BINARY_SERIALIZER_
 		[FieldOrder(5)]
+		#endif
+		#if __AVRO_
+		[DataMember]
 		#endif
 		public long LongVar { get; set; }
 
@@ -88,6 +109,9 @@ namespace SerializersBenchmarks.Objects
 		#if __BINARY_SERIALIZER_
 		[FieldOrder(6)]
 		#endif
+		#if __AVRO_
+		[DataMember]
+		#endif
 		public char CharVar { get; set; }
 
 		#if __PROTO_
@@ -99,6 +123,9 @@ namespace SerializersBenchmarks.Objects
 		#if __BINARY_SERIALIZER_
 		[FieldOrder(7)]
 		#endif
+		#if __AVRO_
+		[DataMember]
+		#endif
 		public float FloatVar { get; set; }
 
 		#if __PROTO_
@@ -109,6 +136,9 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		#if __BINARY_SERIALIZER_
 		[FieldOrder(8)]
+		#endif
+		#if __AVRO_
+		[DataMember]
 		#endif
 		public double DoubleVar { get; set; }
 

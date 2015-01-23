@@ -8,8 +8,11 @@ using ProtoBuf;
 #if __BINARY_SERIALIZER_
 using BinarySerialization;
 #endif
+#if __AVRO_
+using System.Runtime.Serialization;
+#endif
 
-#if __PROTO_ || __NEED_SERIALIZABLE_ATTR_ || __BINARY_SERIALIZER_ || __BOND_
+#if __PROTO_ || __NEED_SERIALIZABLE_ATTR_ || __BINARY_SERIALIZER_ || __BOND_ || __AVRO_
 namespace SerializersBenchmarks.Objects.Custom
 #else
 namespace SerializersBenchmarks.Objects
@@ -25,6 +28,9 @@ namespace SerializersBenchmarks.Objects
 	#if __BOND_
 	[global::Bond.Schema]
 	#endif
+	#if __AVRO_
+	[DataContract]
+	#endif
 	public class ShortArray64K
 	{
 		#if __PROTO_
@@ -35,6 +41,9 @@ namespace SerializersBenchmarks.Objects
 		#endif
 		#if __BOND_
 		[global::Bond.Id(0)]
+		#endif
+		#if __AVRO_
+		[DataMember]
 		#endif
 		public short[] Arr { get; set; }
 
