@@ -36,16 +36,16 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Bond">
-      <HintPath>..\packages\Bond.Runtime.CSharp.3.0.2\lib\net45\Bond.dll</HintPath>
+      <HintPath>..\packages\Bond.Runtime.CSharp.3.0.3\lib\net45\Bond.dll</HintPath>
     </Reference>
     <Reference Include="Bond.Attributes">
-      <HintPath>..\packages\Bond.Runtime.CSharp.3.0.2\lib\net45\Bond.Attributes.dll</HintPath>
+      <HintPath>..\packages\Bond.Runtime.CSharp.3.0.3\lib\net45\Bond.Attributes.dll</HintPath>
     </Reference>
     <Reference Include="Bond.JSON">
-      <HintPath>..\packages\Bond.Runtime.CSharp.3.0.2\lib\net45\Bond.JSON.dll</HintPath>
+      <HintPath>..\packages\Bond.Runtime.CSharp.3.0.3\lib\net45\Bond.JSON.dll</HintPath>
     </Reference>
     <Reference Include="Bond.IO">
-      <HintPath>..\packages\Bond.Runtime.CSharp.3.0.2\lib\net45\Bond.IO.dll</HintPath>
+      <HintPath>..\packages\Bond.Runtime.CSharp.3.0.3\lib\net45\Bond.IO.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
