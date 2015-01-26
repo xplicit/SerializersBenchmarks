@@ -24,16 +24,18 @@ namespace NetSerializerBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = ByteArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 10000; i++) {
 					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -78,16 +80,18 @@ namespace NetSerializerBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = ByteArray4K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 100000; i++) {
 					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -132,16 +136,18 @@ namespace NetSerializerBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = IntArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 250; i++) {
 					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -186,16 +192,18 @@ namespace NetSerializerBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = LongArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 250; i++) {
 					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -240,16 +248,18 @@ namespace NetSerializerBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = ShortArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 250; i++) {
 					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -294,16 +304,18 @@ namespace NetSerializerBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = PrimitiveType.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 1000000; i++) {
 					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -348,16 +360,18 @@ namespace NetSerializerBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = IntList4K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 1000; i++) {
 					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]

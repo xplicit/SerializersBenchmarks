@@ -1,4 +1,4 @@
-﻿<#@ template language="C#" #>
+﻿<#@ template language="C#" inherits="BenchArrayBase" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="${TargetDir}/SerializersBenchmarks.dll" #>
 <#@ assembly name="${TargetPath}" #>
@@ -8,6 +8,7 @@
 <#@ import namespace="BondBench.Schemas" #>
 <#@ import namespace="SerializersBenchmarks" #>
 <#@ import namespace="SerializersBenchmarks.Objects" #>
+<#@ import namespace="SerializersBenchmarks.Templates" #>
 
 using System;
 using BenchmarkSuite.Framework;
@@ -96,30 +97,16 @@ namespace <#=NameSpace#>
 }
 
 <#+
-    public virtual void Usings(){}
-     
-	public virtual string NameSpace {get {return "BondBench";}}
+	public override string NameSpace {get {return "BondBench";}}
 
-	public virtual BenchTypeInfo[] SerializedTypes {
-		get {	
-			return new BenchTypeInfo[] {
-		 		new BenchTypeInfo(typeof(ArraySegment64K),100000),
-		 		new BenchTypeInfo(typeof(ByteArray64K),10000),
-		 		new BenchTypeInfo(typeof(ByteArray4K),100000),
-		 		new BenchTypeInfo(typeof(IntArray64K),250),
-		 		new BenchTypeInfo(typeof(LongArray64K),250),
-		 		new BenchTypeInfo(typeof(ShortArray64K),250),
-		 		new BenchTypeInfo(typeof(PrimitiveType),1000000),
-		 		new BenchTypeInfo(typeof(IntList4K),1000)
-		 	};
+	public override BenchTypeInfo[] SerializedTypes {
+		get {
+			return base.SerializedTypes
+				.Concat(new[]{	
+		 			new BenchTypeInfo(typeof(ArraySegment64K),100000)
+		 		})
+			 	.ToArray();
 		}
 	}
 
-	public virtual void InitializeSerializer(){}
-
-    public virtual void InstantiateSerializer(string name, string type){}
-
-    public virtual void Serialize(string serName, string objName, string objType, string streamName){}
-
-    public virtual void Deserialize(string serName, string objName, string objType, string streamName){}
 #>

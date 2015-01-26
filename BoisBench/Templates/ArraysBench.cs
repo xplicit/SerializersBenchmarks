@@ -25,16 +25,18 @@ namespace BoisSerializerBench
 			var ser=new BoisSerializer();
 			var arr = ByteArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(arr,ms);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 10000; i++) {
 					ms.Position = 0;
 					ser.Serialize(arr,ms);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -81,16 +83,18 @@ namespace BoisSerializerBench
 			var ser=new BoisSerializer();
 			var arr = ByteArray4K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(arr,ms);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 100000; i++) {
 					ms.Position = 0;
 					ser.Serialize(arr,ms);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -137,16 +141,18 @@ namespace BoisSerializerBench
 			var ser=new BoisSerializer();
 			var arr = IntArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(arr,ms);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 250; i++) {
 					ms.Position = 0;
 					ser.Serialize(arr,ms);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -193,16 +199,18 @@ namespace BoisSerializerBench
 			var ser=new BoisSerializer();
 			var arr = LongArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(arr,ms);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 250; i++) {
 					ms.Position = 0;
 					ser.Serialize(arr,ms);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -249,16 +257,18 @@ namespace BoisSerializerBench
 			var ser=new BoisSerializer();
 			var arr = ShortArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(arr,ms);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 250; i++) {
 					ms.Position = 0;
 					ser.Serialize(arr,ms);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -305,16 +315,18 @@ namespace BoisSerializerBench
 			var ser=new BoisSerializer();
 			var arr = PrimitiveType.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(arr,ms);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 1000000; i++) {
 					ms.Position = 0;
 					ser.Serialize(arr,ms);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -361,16 +373,18 @@ namespace BoisSerializerBench
 			var ser=new BoisSerializer();
 			var arr = IntList4K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(arr,ms);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 1000; i++) {
 					ms.Position = 0;
 					ser.Serialize(arr,ms);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]

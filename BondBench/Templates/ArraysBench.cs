@@ -21,64 +21,6 @@ namespace BondBench
 					}
 
 		[Bench]
-		[Iterations(100000)]
-		public void SerializeArraySegment64KStream()
-		{
-			var output = new OutputBuffer();
-			var writer = new CompactBinaryWriter<OutputBuffer>(output);
-
-			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(ArraySegment64K));
-			var arr = ArraySegment64K.Create();
-
-			var b = Benchmark.StartNew ();
-
-			for (int i = 0; i < 100000; i++) {
-				output.Position = 0;
-				ser.Serialize (arr, writer);
-			}
-
-			b.Stop ();
-		}
-	
-		[Bench]
-		[Iterations(100000)]
-		public void DeserializeArraySegment64KStream()
-		{
-			var output = new OutputBuffer();
-			var writer = new CompactBinaryWriter<OutputBuffer>(output);
-
-			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(ArraySegment64K));
-			var deser = new Deserializer<CompactBinaryReader<InputBuffer>>(typeof(ArraySegment64K));
-			var arr = ArraySegment64K.Create();
-			byte[] data;
-
-			ser.Serialize (arr, writer);
-
-			var input = new InputBuffer(output.Data);
-			var reader = new CompactBinaryReader<InputBuffer>(input);
-
-			var b = Benchmark.StartNew ();
-
-			for (int i = 0; i < 100000; i++) {
-				input.Position = 0;
-				var des = deser.Deserialize<ArraySegment64K>(reader);
-			}
-
-			b.Stop ();
-
-			//Verification
-			ArraySegment64K des1;
-
-			input.Position = 0;
-			des1 = deser.Deserialize<ArraySegment64K>(reader);
-
-
-
-			ArraySegment64K.Compare (arr, des1);
-
-		}
-
-		[Bench]
 		[Iterations(10000)]
 		public void SerializeByteArray64KStream()
 		{
@@ -467,6 +409,62 @@ namespace BondBench
 			des1 = deser.Deserialize<IntList4K>(reader);
 
 			IntList4K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(100000)]
+		public void SerializeArraySegment64KStream()
+		{
+			var output = new OutputBuffer();
+			var writer = new CompactBinaryWriter<OutputBuffer>(output);
+
+			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(ArraySegment64K));
+			var arr = ArraySegment64K.Create();
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 100000; i++) {
+				output.Position = 0;
+				ser.Serialize (arr, writer);
+			}
+
+			b.Stop ();
+		}
+	
+		[Bench]
+		[Iterations(100000)]
+		public void DeserializeArraySegment64KStream()
+		{
+			var output = new OutputBuffer();
+			var writer = new CompactBinaryWriter<OutputBuffer>(output);
+
+			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(ArraySegment64K));
+			var deser = new Deserializer<CompactBinaryReader<InputBuffer>>(typeof(ArraySegment64K));
+			var arr = ArraySegment64K.Create();
+			byte[] data;
+
+			ser.Serialize (arr, writer);
+
+			var input = new InputBuffer(output.Data);
+			var reader = new CompactBinaryReader<InputBuffer>(input);
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 100000; i++) {
+				input.Position = 0;
+				var des = deser.Deserialize<ArraySegment64K>(reader);
+			}
+
+			b.Stop ();
+
+			//Verification
+			ArraySegment64K des1;
+
+			input.Position = 0;
+			des1 = deser.Deserialize<ArraySegment64K>(reader);
+
+			ArraySegment64K.Compare (arr, des1);
 
 		}
 

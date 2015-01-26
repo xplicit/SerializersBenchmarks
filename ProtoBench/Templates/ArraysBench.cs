@@ -23,16 +23,18 @@ namespace ProtoBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = ByteArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ProtoBuf.Serializer.Serialize<ByteArray64K> (ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 10000; i++) {
 					ms.Position = 0;
 					ProtoBuf.Serializer.Serialize<ByteArray64K> (ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -77,16 +79,18 @@ namespace ProtoBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = ByteArray4K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ProtoBuf.Serializer.Serialize<ByteArray4K> (ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 100000; i++) {
 					ms.Position = 0;
 					ProtoBuf.Serializer.Serialize<ByteArray4K> (ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -131,16 +135,18 @@ namespace ProtoBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = IntArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ProtoBuf.Serializer.Serialize<IntArray64K> (ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 250; i++) {
 					ms.Position = 0;
 					ProtoBuf.Serializer.Serialize<IntArray64K> (ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -185,16 +191,18 @@ namespace ProtoBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = LongArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ProtoBuf.Serializer.Serialize<LongArray64K> (ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 250; i++) {
 					ms.Position = 0;
 					ProtoBuf.Serializer.Serialize<LongArray64K> (ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -239,16 +247,18 @@ namespace ProtoBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = ShortArray64K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ProtoBuf.Serializer.Serialize<ShortArray64K> (ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 250; i++) {
 					ms.Position = 0;
 					ProtoBuf.Serializer.Serialize<ShortArray64K> (ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -293,16 +303,18 @@ namespace ProtoBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = PrimitiveType.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ProtoBuf.Serializer.Serialize<PrimitiveType> (ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 1000000; i++) {
 					ms.Position = 0;
 					ProtoBuf.Serializer.Serialize<PrimitiveType> (ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
@@ -347,16 +359,18 @@ namespace ProtoBench
 			//BinarySerializer ser = new BinarySerializer ();
 						var arr = IntList4K.Create();
 
-			var b = Benchmark.StartNew ();
-
 			using (MemoryStream ms = new MemoryStream ()) {
+				ProtoBuf.Serializer.Serialize<IntList4K> (ms, arr);
+
+				var b = Benchmark.StartNew ();
+
 				for (int i = 0; i < 1000; i++) {
 					ms.Position = 0;
 					ProtoBuf.Serializer.Serialize<IntList4K> (ms, arr);
 				}
-			}
 
-			b.Stop ();
+				b.Stop ();
+			}
 		}
 	
 		[Bench]
