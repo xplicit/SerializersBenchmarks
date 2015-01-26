@@ -53,6 +53,28 @@ namespace SerializersBenchmarks
 			return arr;
 		}
 
+		public static float[] FillFloatArray(int arraySize)
+		{
+			Random rnd = new Random (100);
+			float[] arr = new float[arraySize]; 
+
+			for(int i=0;i<arraySize;i++)
+				arr[i] = (float)rnd.NextDouble();
+
+			return arr;
+		}
+
+		public static double[] FillDoubleArray(int arraySize)
+		{
+			Random rnd = new Random (100);
+			double[] arr = new double[arraySize]; 
+
+			for(int i=0;i<arraySize;i++)
+				arr[i] = rnd.NextDouble();
+
+			return arr;
+		}
+
 	}
 }
 

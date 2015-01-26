@@ -29,11 +29,13 @@ namespace SerializersBenchmarks.Templates {
 	public virtual BenchTypeInfo[] SerializedTypes {
 		get {	
 			return new BenchTypeInfo[] {
-		 		new BenchTypeInfo(typeof(ByteArray64K),10000),
+		 		new BenchTypeInfo(typeof(ByteArray64K),100000, 10000),
 		 		new BenchTypeInfo(typeof(ByteArray4K),1000000),
 		 		new BenchTypeInfo(typeof(IntArray64K),250),
 		 		new BenchTypeInfo(typeof(LongArray64K),250),
 		 		new BenchTypeInfo(typeof(ShortArray64K),250),
+		 		new BenchTypeInfo(typeof(FloatArray64K),250),
+		 		new BenchTypeInfo(typeof(DoubleArray64K),250),
 		 		new BenchTypeInfo(typeof(PrimitiveType),1000000),
 		 		new BenchTypeInfo(typeof(IntList4K),1000),
 		 		new BenchTypeInfo(typeof(PrimitiveDictionary1K),1000)
@@ -197,7 +199,7 @@ namespace SerializersBenchmarks.Templates {
             #line hidden
             
             #line 53 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Iterations));
+            this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.IterationsDeserialize));
             
             #line default
             #line hidden
@@ -257,7 +259,7 @@ namespace SerializersBenchmarks.Templates {
             #line hidden
             
             #line 69 "/home/sergey/Projects/SerializersBenchmarks/SerializersBenchmarks/Templates/BenchArrayBase.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.Iterations));
+            this.Write(this.ToStringHelper.ToStringWithCulture(typeInfo.IterationsDeserialize));
             
             #line default
             #line hidden

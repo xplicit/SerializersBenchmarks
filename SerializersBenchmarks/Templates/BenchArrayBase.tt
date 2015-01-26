@@ -50,7 +50,7 @@ namespace <#=NameSpace#>
 		}
 	
 		[Bench]
-		[Iterations(<#=typeInfo.Iterations#>)]
+		[Iterations(<#=typeInfo.IterationsDeserialize#>)]
 		public void Deserialize<#=typeInfo.Name#>Stream()
 		{
 
@@ -66,7 +66,7 @@ namespace <#=NameSpace#>
 			var b = Benchmark.StartNew ();
 
 			using (MemoryStream ms = new MemoryStream (data)) {
-				for (int i = 0; i < <#=typeInfo.Iterations#>; i++) {
+				for (int i = 0; i < <#=typeInfo.IterationsDeserialize#>; i++) {
 					ms.Position = 0;
 					<#=typeInfo.Name#> des=<# Deserialize("ser","arr",typeInfo.Name,"ms"); #>
 				}
@@ -98,11 +98,13 @@ namespace <#=NameSpace#>
 	public virtual BenchTypeInfo[] SerializedTypes {
 		get {	
 			return new BenchTypeInfo[] {
-		 		new BenchTypeInfo(typeof(ByteArray64K),10000),
+		 		new BenchTypeInfo(typeof(ByteArray64K),100000, 10000),
 		 		new BenchTypeInfo(typeof(ByteArray4K),1000000),
 		 		new BenchTypeInfo(typeof(IntArray64K),250),
 		 		new BenchTypeInfo(typeof(LongArray64K),250),
 		 		new BenchTypeInfo(typeof(ShortArray64K),250),
+		 		new BenchTypeInfo(typeof(FloatArray64K),250),
+		 		new BenchTypeInfo(typeof(DoubleArray64K),250),
 		 		new BenchTypeInfo(typeof(PrimitiveType),1000000),
 		 		new BenchTypeInfo(typeof(IntList4K),1000),
 		 		new BenchTypeInfo(typeof(PrimitiveDictionary1K),1000)

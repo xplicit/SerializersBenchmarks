@@ -21,7 +21,7 @@ namespace BondBench
 					}
 
 		[Bench]
-		[Iterations(10000)]
+		[Iterations(100000)]
 		public void SerializeByteArray64KStream()
 		{
 			var output = new OutputBuffer();
@@ -32,7 +32,7 @@ namespace BondBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 10000; i++) {
+			for (int i = 0; i < 100000; i++) {
 				output.Position = 0;
 				ser.Serialize (arr, writer);
 			}
@@ -41,7 +41,7 @@ namespace BondBench
 		}
 	
 		[Bench]
-		[Iterations(10000)]
+		[Iterations(100000)]
 		public void DeserializeByteArray64KStream()
 		{
 			var output = new OutputBuffer();
@@ -59,7 +59,7 @@ namespace BondBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 10000; i++) {
+			for (int i = 0; i < 100000; i++) {
 				input.Position = 0;
 				var des = deser.Deserialize<ByteArray64K>(reader);
 			}
@@ -297,6 +297,118 @@ namespace BondBench
 			des1 = deser.Deserialize<ShortArray64K>(reader);
 
 			ShortArray64K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(250)]
+		public void SerializeFloatArray64KStream()
+		{
+			var output = new OutputBuffer();
+			var writer = new CompactBinaryWriter<OutputBuffer>(output);
+
+			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(FloatArray64K));
+			var arr = FloatArray64K.Create();
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 250; i++) {
+				output.Position = 0;
+				ser.Serialize (arr, writer);
+			}
+
+			b.Stop ();
+		}
+	
+		[Bench]
+		[Iterations(250)]
+		public void DeserializeFloatArray64KStream()
+		{
+			var output = new OutputBuffer();
+			var writer = new CompactBinaryWriter<OutputBuffer>(output);
+
+			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(FloatArray64K));
+			var deser = new Deserializer<CompactBinaryReader<InputBuffer>>(typeof(FloatArray64K));
+			var arr = FloatArray64K.Create();
+			byte[] data;
+
+			ser.Serialize (arr, writer);
+
+			var input = new InputBuffer(output.Data);
+			var reader = new CompactBinaryReader<InputBuffer>(input);
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 250; i++) {
+				input.Position = 0;
+				var des = deser.Deserialize<FloatArray64K>(reader);
+			}
+
+			b.Stop ();
+
+			//Verification
+			FloatArray64K des1;
+
+			input.Position = 0;
+			des1 = deser.Deserialize<FloatArray64K>(reader);
+
+			FloatArray64K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(250)]
+		public void SerializeDoubleArray64KStream()
+		{
+			var output = new OutputBuffer();
+			var writer = new CompactBinaryWriter<OutputBuffer>(output);
+
+			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(DoubleArray64K));
+			var arr = DoubleArray64K.Create();
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 250; i++) {
+				output.Position = 0;
+				ser.Serialize (arr, writer);
+			}
+
+			b.Stop ();
+		}
+	
+		[Bench]
+		[Iterations(250)]
+		public void DeserializeDoubleArray64KStream()
+		{
+			var output = new OutputBuffer();
+			var writer = new CompactBinaryWriter<OutputBuffer>(output);
+
+			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(DoubleArray64K));
+			var deser = new Deserializer<CompactBinaryReader<InputBuffer>>(typeof(DoubleArray64K));
+			var arr = DoubleArray64K.Create();
+			byte[] data;
+
+			ser.Serialize (arr, writer);
+
+			var input = new InputBuffer(output.Data);
+			var reader = new CompactBinaryReader<InputBuffer>(input);
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 250; i++) {
+				input.Position = 0;
+				var des = deser.Deserialize<DoubleArray64K>(reader);
+			}
+
+			b.Stop ();
+
+			//Verification
+			DoubleArray64K des1;
+
+			input.Position = 0;
+			des1 = deser.Deserialize<DoubleArray64K>(reader);
+
+			DoubleArray64K.Compare (arr, des1);
 
 		}
 

@@ -19,7 +19,7 @@ namespace AvroBench
 					}
 
 		[Bench]
-		[Iterations(10000)]
+		[Iterations(100000)]
 		public void SerializeByteArray64KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -31,7 +31,7 @@ namespace AvroBench
 
 				var b = Benchmark.StartNew ();
 
-				for (int i = 0; i < 10000; i++) {
+				for (int i = 0; i < 100000; i++) {
 					ms.Position = 0;
 					ser.Serialize(ms,arr);
 				}
@@ -305,6 +305,122 @@ namespace AvroBench
 			}
 
 			ShortArray64K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(250)]
+		public void SerializeFloatArray64KStream()
+		{
+			//BinarySerializer ser = new BinarySerializer ();
+			var ser = AvroSerializer.Create<FloatArray64K> ();
+			var arr = FloatArray64K.Create();
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(ms,arr);
+
+				var b = Benchmark.StartNew ();
+
+				for (int i = 0; i < 250; i++) {
+					ms.Position = 0;
+					ser.Serialize(ms,arr);
+				}
+
+				b.Stop ();
+			}
+		}
+	
+		[Bench]
+		[Iterations(250)]
+		public void DeserializeFloatArray64KStream()
+		{
+
+			var ser = AvroSerializer.Create<FloatArray64K> ();
+			var arr = FloatArray64K.Create();
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(ms,arr);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 250; i++) {
+					ms.Position = 0;
+					FloatArray64K des=ser.Deserialize(ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verification
+			FloatArray64K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ser.Deserialize(ms);
+			}
+
+			FloatArray64K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(250)]
+		public void SerializeDoubleArray64KStream()
+		{
+			//BinarySerializer ser = new BinarySerializer ();
+			var ser = AvroSerializer.Create<DoubleArray64K> ();
+			var arr = DoubleArray64K.Create();
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(ms,arr);
+
+				var b = Benchmark.StartNew ();
+
+				for (int i = 0; i < 250; i++) {
+					ms.Position = 0;
+					ser.Serialize(ms,arr);
+				}
+
+				b.Stop ();
+			}
+		}
+	
+		[Bench]
+		[Iterations(250)]
+		public void DeserializeDoubleArray64KStream()
+		{
+
+			var ser = AvroSerializer.Create<DoubleArray64K> ();
+			var arr = DoubleArray64K.Create();
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(ms,arr);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 250; i++) {
+					ms.Position = 0;
+					DoubleArray64K des=ser.Deserialize(ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verification
+			DoubleArray64K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ser.Deserialize(ms);
+			}
+
+			DoubleArray64K.Compare (arr, des1);
 
 		}
 
