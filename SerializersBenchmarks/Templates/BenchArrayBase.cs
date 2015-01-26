@@ -35,7 +35,8 @@ namespace SerializersBenchmarks.Templates {
 		 		new BenchTypeInfo(typeof(LongArray64K),250),
 		 		new BenchTypeInfo(typeof(ShortArray64K),250),
 		 		new BenchTypeInfo(typeof(PrimitiveType),1000000),
-		 		new BenchTypeInfo(typeof(IntList4K),1000)
+		 		new BenchTypeInfo(typeof(IntList4K),1000),
+		 		new BenchTypeInfo(typeof(PrimitiveDictionary1K),1000)
 		 	};
 		}
 	}

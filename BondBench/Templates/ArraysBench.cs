@@ -77,7 +77,7 @@ namespace BondBench
 		}
 
 		[Bench]
-		[Iterations(100000)]
+		[Iterations(1000000)]
 		public void SerializeByteArray4KStream()
 		{
 			var output = new OutputBuffer();
@@ -88,7 +88,7 @@ namespace BondBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 100000; i++) {
+			for (int i = 0; i < 1000000; i++) {
 				output.Position = 0;
 				ser.Serialize (arr, writer);
 			}
@@ -97,7 +97,7 @@ namespace BondBench
 		}
 	
 		[Bench]
-		[Iterations(100000)]
+		[Iterations(1000000)]
 		public void DeserializeByteArray4KStream()
 		{
 			var output = new OutputBuffer();
@@ -115,7 +115,7 @@ namespace BondBench
 
 			var b = Benchmark.StartNew ();
 
-			for (int i = 0; i < 100000; i++) {
+			for (int i = 0; i < 1000000; i++) {
 				input.Position = 0;
 				var des = deser.Deserialize<ByteArray4K>(reader);
 			}
@@ -409,6 +409,62 @@ namespace BondBench
 			des1 = deser.Deserialize<IntList4K>(reader);
 
 			IntList4K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(1000)]
+		public void SerializePrimitiveDictionary1KStream()
+		{
+			var output = new OutputBuffer();
+			var writer = new CompactBinaryWriter<OutputBuffer>(output);
+
+			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(PrimitiveDictionary1K));
+			var arr = PrimitiveDictionary1K.Create();
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 1000; i++) {
+				output.Position = 0;
+				ser.Serialize (arr, writer);
+			}
+
+			b.Stop ();
+		}
+	
+		[Bench]
+		[Iterations(1000)]
+		public void DeserializePrimitiveDictionary1KStream()
+		{
+			var output = new OutputBuffer();
+			var writer = new CompactBinaryWriter<OutputBuffer>(output);
+
+			var ser = new Serializer<CompactBinaryWriter<OutputBuffer>> (typeof(PrimitiveDictionary1K));
+			var deser = new Deserializer<CompactBinaryReader<InputBuffer>>(typeof(PrimitiveDictionary1K));
+			var arr = PrimitiveDictionary1K.Create();
+			byte[] data;
+
+			ser.Serialize (arr, writer);
+
+			var input = new InputBuffer(output.Data);
+			var reader = new CompactBinaryReader<InputBuffer>(input);
+
+			var b = Benchmark.StartNew ();
+
+			for (int i = 0; i < 1000; i++) {
+				input.Position = 0;
+				var des = deser.Deserialize<PrimitiveDictionary1K>(reader);
+			}
+
+			b.Stop ();
+
+			//Verification
+			PrimitiveDictionary1K des1;
+
+			input.Position = 0;
+			des1 = deser.Deserialize<PrimitiveDictionary1K>(reader);
+
+			PrimitiveDictionary1K.Compare (arr, des1);
 
 		}
 

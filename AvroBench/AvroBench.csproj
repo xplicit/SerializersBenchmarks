@@ -66,6 +66,9 @@
     <Compile Include="..\SerializersBenchmarks\Objects\ShortArray64K.cs">
       <Link>Objects\ShortArray64K.cs</Link>
     </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\PrimitiveDictionary1K.cs">
+      <Link>Objects\PrimitiveDictionary1K.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

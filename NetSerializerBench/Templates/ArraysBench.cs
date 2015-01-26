@@ -14,7 +14,7 @@ namespace NetSerializerBench
 
 		public ArraysBench ()
 		{
-			NetSerializer.Serializer.Initialize(new Type[]{typeof(ByteArray64K),typeof(ByteArray4K),typeof(IntArray64K),typeof(LongArray64K),typeof(ShortArray64K),typeof(PrimitiveType),typeof(IntList4K)});
+			NetSerializer.Serializer.Initialize(new Type[]{typeof(ByteArray64K),typeof(ByteArray4K),typeof(IntArray64K),typeof(LongArray64K),typeof(ShortArray64K),typeof(PrimitiveType),typeof(IntList4K),typeof(PrimitiveDictionary1K)});
 		}
 
 		[Bench]
@@ -74,7 +74,7 @@ namespace NetSerializerBench
 		}
 
 		[Bench]
-		[Iterations(100000)]
+		[Iterations(1000000)]
 		public void SerializeByteArray4KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -85,7 +85,7 @@ namespace NetSerializerBench
 
 				var b = Benchmark.StartNew ();
 
-				for (int i = 0; i < 100000; i++) {
+				for (int i = 0; i < 1000000; i++) {
 					ms.Position = 0;
 					NetSerializer.Serializer.Serialize(ms, arr);
 				}
@@ -95,7 +95,7 @@ namespace NetSerializerBench
 		}
 	
 		[Bench]
-		[Iterations(100000)]
+		[Iterations(1000000)]
 		public void DeserializeByteArray4KStream()
 		{
 
@@ -110,7 +110,7 @@ namespace NetSerializerBench
 			var b = Benchmark.StartNew ();
 
 			using (MemoryStream ms = new MemoryStream (data)) {
-				for (int i = 0; i < 100000; i++) {
+				for (int i = 0; i < 1000000; i++) {
 					ms.Position = 0;
 					ByteArray4K des=(ByteArray4K)NetSerializer.Serializer.Deserialize(ms);
 				}
@@ -406,6 +406,62 @@ namespace NetSerializerBench
 			}
 
 			IntList4K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(1000)]
+		public void SerializePrimitiveDictionary1KStream()
+		{
+			//BinarySerializer ser = new BinarySerializer ();
+						var arr = PrimitiveDictionary1K.Create();
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+
+				var b = Benchmark.StartNew ();
+
+				for (int i = 0; i < 1000; i++) {
+					ms.Position = 0;
+					NetSerializer.Serializer.Serialize(ms, arr);
+				}
+
+				b.Stop ();
+			}
+		}
+	
+		[Bench]
+		[Iterations(1000)]
+		public void DeserializePrimitiveDictionary1KStream()
+		{
+
+						var arr = PrimitiveDictionary1K.Create();
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				NetSerializer.Serializer.Serialize(ms, arr);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 1000; i++) {
+					ms.Position = 0;
+					PrimitiveDictionary1K des=(PrimitiveDictionary1K)NetSerializer.Serializer.Deserialize(ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verification
+			PrimitiveDictionary1K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=(PrimitiveDictionary1K)NetSerializer.Serializer.Deserialize(ms);
+			}
+
+			PrimitiveDictionary1K.Compare (arr, des1);
 
 		}
 

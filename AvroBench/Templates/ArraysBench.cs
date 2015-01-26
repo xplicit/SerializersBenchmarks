@@ -77,7 +77,7 @@ namespace AvroBench
 		}
 
 		[Bench]
-		[Iterations(100000)]
+		[Iterations(1000000)]
 		public void SerializeByteArray4KStream()
 		{
 			//BinarySerializer ser = new BinarySerializer ();
@@ -89,7 +89,7 @@ namespace AvroBench
 
 				var b = Benchmark.StartNew ();
 
-				for (int i = 0; i < 100000; i++) {
+				for (int i = 0; i < 1000000; i++) {
 					ms.Position = 0;
 					ser.Serialize(ms,arr);
 				}
@@ -99,7 +99,7 @@ namespace AvroBench
 		}
 	
 		[Bench]
-		[Iterations(100000)]
+		[Iterations(1000000)]
 		public void DeserializeByteArray4KStream()
 		{
 
@@ -115,7 +115,7 @@ namespace AvroBench
 			var b = Benchmark.StartNew ();
 
 			using (MemoryStream ms = new MemoryStream (data)) {
-				for (int i = 0; i < 100000; i++) {
+				for (int i = 0; i < 1000000; i++) {
 					ms.Position = 0;
 					ByteArray4K des=ser.Deserialize(ms);
 				}
@@ -421,6 +421,64 @@ namespace AvroBench
 			}
 
 			IntList4K.Compare (arr, des1);
+
+		}
+
+		[Bench]
+		[Iterations(1000)]
+		public void SerializePrimitiveDictionary1KStream()
+		{
+			//BinarySerializer ser = new BinarySerializer ();
+			var ser = AvroSerializer.Create<PrimitiveDictionary1K> ();
+			var arr = PrimitiveDictionary1K.Create();
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(ms,arr);
+
+				var b = Benchmark.StartNew ();
+
+				for (int i = 0; i < 1000; i++) {
+					ms.Position = 0;
+					ser.Serialize(ms,arr);
+				}
+
+				b.Stop ();
+			}
+		}
+	
+		[Bench]
+		[Iterations(1000)]
+		public void DeserializePrimitiveDictionary1KStream()
+		{
+
+			var ser = AvroSerializer.Create<PrimitiveDictionary1K> ();
+			var arr = PrimitiveDictionary1K.Create();
+			byte[] data;
+
+			using (MemoryStream ms = new MemoryStream ()) {
+				ser.Serialize(ms,arr);
+				data = ms.ToArray ();
+			}
+
+			var b = Benchmark.StartNew ();
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				for (int i = 0; i < 1000; i++) {
+					ms.Position = 0;
+					PrimitiveDictionary1K des=ser.Deserialize(ms);
+				}
+			}
+
+			b.Stop ();
+
+			//Verification
+			PrimitiveDictionary1K des1;
+
+			using (MemoryStream ms = new MemoryStream (data)) {
+				des1=ser.Deserialize(ms);
+			}
+
+			PrimitiveDictionary1K.Compare (arr, des1);
 
 		}
 

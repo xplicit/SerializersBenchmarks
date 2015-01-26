@@ -79,6 +79,9 @@
     <Compile Include="Schemas\ArraySegment64K.cs" />
     <Compile Include="Schemas\ArraySegment64K_types.cs" />
     <Compile Include="AliasConverter.cs" />
+    <Compile Include="..\SerializersBenchmarks\Objects\PrimitiveDictionary1K.cs">
+      <Link>Objects\PrimitiveDictionary1K.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
