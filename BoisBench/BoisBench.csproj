@@ -30,11 +30,11 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Salar.Bois">
-      <HintPath>..\packages\Salar.Bois.1.8.1.0\lib\net40\Salar.Bois.dll</HintPath>
-    </Reference>
     <Reference Include="BenchmarkSuite.Framework">
       <HintPath>..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Salar.Bois">
+      <HintPath>..\packages\Salar.Bois.1.8.2.0\lib\net40\Salar.Bois.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
