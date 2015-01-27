@@ -1,0 +1,20 @@
+﻿<#@ template language="C#" inherits="BaseT4" #>
+<#@ import namespace="ConsoleTest" #>
+<#@ assembly name="$(TargetPath)" #>
+
+//begin 1
+// assembly name="/home/sergey/Projects/SerializersBenchmarks/ConsoleTest/bin/Release/ConsoleTest.exe" 
+//  
+/*  
+<#= Test("t1") #>
+    
+	<#	SharedText(2); #>
+*/
+//end 1
+	 
+<#+
+string Test(string t)
+{
+	return t;
+}
+#>
