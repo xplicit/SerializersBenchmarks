@@ -3,15 +3,16 @@ SerializersBenchmarks
 
 Sample benchmarks for various BinarySeriazliers
 
-Instalation and Running
+Running the Benchmarks
 ---------------------
 
-To run the benchmarking you need to install BenchmarkSuite.ConsoleRunner nuget package. To do it
+Windows:
 
-    nuget install BenchmarkSuite.ConsoleRunner
+    cd build
+    build.bat
+    
+Linux or Mac:
+    cd build
+    ./build.sh
 
-Then clone the url and open and compile solution for `Release` target in Visual Studio or Xamarin Studio (Monodevelop)
-
-Then from command line run
-
-    ./bench-console.exe [path-to-compiled-dll] 
+It will compile the solution, run the benchmarks and save the results into BenchResults.xml file 
