@@ -30,10 +30,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="BinarySerializer">
-      <HintPath>..\packages\BinarySerializer.2.6.0.0\lib\portable-net40+sl50+win+MonoAndroid10+MonoTouch10\BinarySerializer.dll</HintPath>
+      <HintPath>..\..\packages\BinarySerializer.2.6.0.0\lib\portable-net40+sl50+win+MonoAndroid10+MonoTouch10\BinarySerializer.dll</HintPath>
     </Reference>
     <Reference Include="Salar.Bois">
-      <HintPath>..\packages\Salar.Bois.1.8.1.0\lib\net40\Salar.Bois.dll</HintPath>
+      <HintPath>..\..\packages\Salar.Bois.1.8.1.0\lib\net40\Salar.Bois.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

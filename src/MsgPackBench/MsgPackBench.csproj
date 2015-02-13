@@ -30,10 +30,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="MsgPack">
-      <HintPath>..\packages\MsgPack.Cli.0.5.7\lib\net45\MsgPack.dll</HintPath>
+      <HintPath>..\..\packages\MsgPack.Cli.0.5.7\lib\net45\MsgPack.dll</HintPath>
     </Reference>
     <Reference Include="BenchmarkSuite.Framework">
-      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+      <HintPath>..\..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

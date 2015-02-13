@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{248A645B-2376-47E8-9AEC-DE026137E790}</ProjectGuid>
+    <ProjectGuid>{04DD7DCA-959F-4876-8973-9FEB71D91256}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>BinarySerializerBench</RootNamespace>
-    <AssemblyName>BinarySerializerBench</AssemblyName>
+    <RootNamespace>BondBench</RootNamespace>
+    <AssemblyName>BondBench</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -14,7 +14,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;__BINARY_SERIALIZER_;__NEED_SIRIALIZABLE_ATTR_</DefineConstants>
+    <DefineConstants>DEBUG;__BOND_</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -25,45 +25,60 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <DefineConstants>__BINARY_SERIALIZER_</DefineConstants>
+    <DefineConstants>__BOND_;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="BenchmarkSuite.Framework">
-      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+      <HintPath>..\..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="BinarySerializer">
-      <HintPath>..\packages\BinarySerializer.3.3\lib\portable-net40+sl50+win\BinarySerializer.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Bond">
+      <HintPath>..\..\packages\Bond.Runtime.CSharp.3.0.3\lib\net45\Bond.dll</HintPath>
+    </Reference>
+    <Reference Include="Bond.Attributes">
+      <HintPath>..\..\packages\Bond.Runtime.CSharp.3.0.3\lib\net45\Bond.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="Bond.JSON">
+      <HintPath>..\..\packages\Bond.Runtime.CSharp.3.0.3\lib\net45\Bond.JSON.dll</HintPath>
+    </Reference>
+    <Reference Include="Bond.IO">
+      <HintPath>..\..\packages\Bond.Runtime.CSharp.3.0.3\lib\net45\Bond.IO.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BytesBench.cs" />
     <Compile Include="..\SerializersBenchmarks\Objects\ByteArray64K.cs">
       <Link>Objects\ByteArray64K.cs</Link>
-    </Compile>
-    <Compile Include="..\SerializersBenchmarks\Objects\IntArray64K.cs">
-      <Link>Objects\IntArray64K.cs</Link>
-    </Compile>
-    <Compile Include="..\SerializersBenchmarks\Objects\ShortArray64K.cs">
-      <Link>Objects\ShortArray64K.cs</Link>
-    </Compile>
-    <Compile Include="..\SerializersBenchmarks\Objects\LongArray64K.cs">
-      <Link>Objects\LongArray64K.cs</Link>
     </Compile>
     <Compile Include="Templates\ArraysBench.cs">
       <DependentUpon>ArraysBench.tt</DependentUpon>
     </Compile>
-    <Compile Include="..\SerializersBenchmarks\Objects\ByteArray4K.cs">
-      <Link>Objects\ByteArray4K.cs</Link>
+    <Compile Include="..\SerializersBenchmarks\Objects\ShortArray64K.cs">
+      <Link>Objects\ShortArray64K.cs</Link>
     </Compile>
     <Compile Include="..\SerializersBenchmarks\Objects\PrimitiveType.cs">
       <Link>Objects\PrimitiveType.cs</Link>
     </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\LongArray64K.cs">
+      <Link>Objects\LongArray64K.cs</Link>
+    </Compile>
     <Compile Include="..\SerializersBenchmarks\Objects\IntList4K.cs">
       <Link>Objects\IntList4K.cs</Link>
     </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\IntArray64K.cs">
+      <Link>Objects\IntArray64K.cs</Link>
+    </Compile>
+    <Compile Include="..\SerializersBenchmarks\Objects\ByteArray4K.cs">
+      <Link>Objects\ByteArray4K.cs</Link>
+    </Compile>
+    <Compile Include="Schemas\Primitive_types.cs" />
+    <Compile Include="Schemas\ArraySegment64K.cs" />
+    <Compile Include="Schemas\ArraySegment64K_types.cs" />
+    <Compile Include="AliasConverter.cs" />
     <Compile Include="..\SerializersBenchmarks\Objects\PrimitiveDictionary1K.cs">
       <Link>Objects\PrimitiveDictionary1K.cs</Link>
     </Compile>
@@ -76,12 +91,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\SerializersBenchmarks\SerializersBenchmarks.csproj">
-      <Project>{4B30E239-1F52-45B0-B242-DB512141CC11}</Project>
-      <Name>SerializersBenchmarks</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Folder Include="Schemas\" />
     <Folder Include="Objects\" />
     <Folder Include="Templates\" />
   </ItemGroup>
@@ -91,5 +101,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ArraysBench.cs</LastGenOutput>
     </None>
+    <None Include="Schemas\Primitive.bond" />
+    <None Include="Schemas\ArraySegment64K.bond" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SerializersBenchmarks\SerializersBenchmarks.csproj">
+      <Project>{4B30E239-1F52-45B0-B242-DB512141CC11}</Project>
+      <Name>SerializersBenchmarks</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

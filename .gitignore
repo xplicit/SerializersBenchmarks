@@ -3,3 +3,5 @@ obj/
 *.userprefs
 /packages/
 !packages/repositories.config
+build/BenchmarkSuite*
+build/nuget.exe

@@ -30,10 +30,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="NetSerializer">
-      <HintPath>..\packages\NetSerializer.2.1.0.0\lib\net40\NetSerializer.dll</HintPath>
+      <HintPath>..\..\packages\NetSerializer.2.1.0.0\lib\net40\NetSerializer.dll</HintPath>
     </Reference>
     <Reference Include="BenchmarkSuite.Framework">
-      <HintPath>..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
+      <HintPath>..\..\packages\BenchmarkSuite.Framework.1.0.2\lib\net40\BenchmarkSuite.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

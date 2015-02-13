@@ -1,25 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializersBenchmarks", "SerializersBenchmarks\SerializersBenchmarks.csproj", "{4B30E239-1F52-45B0-B242-DB512141CC11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializersBenchmarks", "src\SerializersBenchmarks\SerializersBenchmarks.csproj", "{4B30E239-1F52-45B0-B242-DB512141CC11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsgPackBench", "MsgPackBench\MsgPackBench.csproj", "{5731E8C1-F619-41C9-9DC5-01D51C17359E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsgPackBench", "src\MsgPackBench\MsgPackBench.csproj", "{5731E8C1-F619-41C9-9DC5-01D51C17359E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoBench", "ProtoBench\ProtoBench.csproj", "{D6C8D8A7-07ED-4BAF-8301-B299D62288F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoBench", "src\ProtoBench\ProtoBench.csproj", "{D6C8D8A7-07ED-4BAF-8301-B299D62288F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoisBench", "BoisBench\BoisBench.csproj", "{80DEA09B-8740-4319-BA8C-F96078D9B6BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoisBench", "src\BoisBench\BoisBench.csproj", "{80DEA09B-8740-4319-BA8C-F96078D9B6BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSerializerBench", "NetSerializerBench\NetSerializerBench.csproj", "{DAFBABE5-5A84-49CA-BA71-7349B728CE99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSerializerBench", "src\NetSerializerBench\NetSerializerBench.csproj", "{DAFBABE5-5A84-49CA-BA71-7349B728CE99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySerializerBench", "BinarySerializerBench\BinarySerializerBench.csproj", "{248A645B-2376-47E8-9AEC-DE026137E790}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySerializerBench", "src\BinarySerializerBench\BinarySerializerBench.csproj", "{248A645B-2376-47E8-9AEC-DE026137E790}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{24AB5728-4CD9-4697-BADC-33D9E3EB074F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "src\ConsoleTest\ConsoleTest.csproj", "{24AB5728-4CD9-4697-BADC-33D9E3EB074F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BondBench", "BondBench\BondBench.csproj", "{04DD7DCA-959F-4876-8973-9FEB71D91256}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BondBench", "src\BondBench\BondBench.csproj", "{04DD7DCA-959F-4876-8973-9FEB71D91256}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{D2E32194-F4FE-42B3-B0FB-28A3108017F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvroBench", "AvroBench\AvroBench.csproj", "{9981C0E8-D10E-460E-8E19-61EDB306601C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvroBench", "src\AvroBench\AvroBench.csproj", "{9981C0E8-D10E-460E-8E19-61EDB306601C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
