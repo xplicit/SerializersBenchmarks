@@ -12,6 +12,7 @@ Windows:
     build.bat
     
 Linux or Mac:
+
     cd build
     ./build.sh
 
